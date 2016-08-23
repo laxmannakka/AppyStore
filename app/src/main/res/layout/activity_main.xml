@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bridgelabz.appystore.view.MainActivity"
+    android:orientation="horizontal"
+    android:background="@drawable/background">
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/layout_bg"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/textview"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:text="please Enter your registerd mobile number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="italic" />
+        <EditText
+            android:id="@+id/edit_query"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:hint="Enter Registerde mobile number"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:minLines="3"
+
+            android:background="@drawable/rounded_edittext"/>
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/button"
+                android:text="login"
+
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="25dp"
+            android:text="Continue without login"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+</LinearLayout>
