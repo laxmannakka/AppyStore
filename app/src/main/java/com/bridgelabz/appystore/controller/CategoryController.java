@@ -1,113 +1,131 @@
 package com.bridgelabz.appystore.controller;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 
+import com.bridgelabz.appystore.interfaces.Asyntask;
+import com.bridgelabz.appystore.interfaces.Dataready;
 import com.bridgelabz.appystore.model.Categorymodel;
+import com.bridgelabz.appystore.model.ContentListmodel;
 import com.bridgelabz.appystore.viewmodel.CategoryViewmodel;
+import com.bumptech.glide.Glide;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by bridgeit007 on 19/8/16.
  * <Purpose>
- *
- *
+ * 1. In this class I have done  rest call operations
+ * 2.it holds the model data and populate the view model
  */
 
 public class CategoryController {
-    String X_APPY_USERID = "290903782";
-    String X_APPY_IMEI = "353368070301951";
-    String X_APPY_PCP_ID = "999";
-    String X_APPY_CAMPAIGN_ID = "8700441600";
-    String X_APPY_APP_TYPE = " lite";
-    String X_APPY_TTR = "10800000";
-    String X_APPY_UTYPE = "O";
-    String X_APPY_MSISDN = "0";
-    String X_APPY_IS_NEW_USER = "N";
-    String X_APPY_API_KEY = "gh610rt23eqwpll";
-    public CategoryController() {
+
+
+    // Initilizing the arraylist this list holds the category model data
+   public  final ArrayList<Categorymodel> mListofCategory = new ArrayList<>();
+    ArrayList<ContentListmodel> mContentlist = new ArrayList<>();
+
+
+    public void loaddataFromserver(final Asyntask asyntask) {
+        //rest url getting the data from url
+        String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getCategoryList&content_type=videos&limit_start=0&age=1.5&incl_age=5";
+
+        // creating the object of Restservice class
+        RestService obj = new RestService() {
+
+            @Override
+            protected void onPostExecute(ArrayList arrayList) {
+                asyntask.getdatafromserver(arrayList);
+            }
+        };
+
+
+        // calling the function
+        obj.execute(url);
     }
 
 
+    // function for Populate viewmodel
 
-    //--Method to convert the stream data into the string
+    public ArrayList<CategoryViewmodel> populateViewmodel(final Dataready dataready) {
 
-    public static Bitmap imageDownload(String uri) {
-        URL url;
-        InputStream image;
-        try {
-            url = new URL(uri);
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            image = new BufferedInputStream(httpURLConnection.getInputStream());
-            return BitmapFactory.decodeStream(image);
+        // calling the rest call
+        loaddataFromserver(new Asyntask() {
+            @Override
+            public void getdatafromserver(ArrayList<Categorymodel> categorylist) {
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+                ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
+                for (int i = 0; i < categorylist.size(); i++) {
+                    Categorymodel model = categorylist.get(i);
+                    String title = model.getCategory_name();
+                    Bitmap image = model.getImage();
+                    String pid =model.getParent_category_id();
+                    String cid = model.getCategory_id();
+                    String url =model.getImage_path();
+                    viewmodellist.add(new CategoryViewmodel(title, image,pid,cid,url));
+                }
+                dataready.getviewmodeldata(viewmodellist);
+            }
+
+        });
         return null;
     }
 
-    public String readDataFromServer(String uri) {
 
-        InputStream in;
-        try {
-            URL url = new URL(uri);
+    // This class used for do the backround process
+    class RestService extends AsyncTask<String, String, ArrayList> {
+        @Override
+        protected ArrayList doInBackground(String... strings) {
 
+            String catogory_name;
+            String category_id;
+            String parent_category_id;
+            String parent_category_name;
+            String image_path;
+            Bitmap image;
 
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoOutput(true);
-            urlConnection.setDoInput(true);
-            urlConnection.setUseCaches(false);
-            // urlConnection.setRequestMethod("GET");
-            urlConnection.addRequestProperty("X_APPY_USERID", X_APPY_USERID);
-            urlConnection.addRequestProperty("X_APPY_IMEI", X_APPY_IMEI);
-            urlConnection.addRequestProperty("X_APPY_PCP_ID", X_APPY_PCP_ID);
-            urlConnection.addRequestProperty("X_APPY_CAMPAIGN_ID", X_APPY_CAMPAIGN_ID);
-            urlConnection.addRequestProperty("X_APPY_APP_TYPE", X_APPY_APP_TYPE);
-            urlConnection.addRequestProperty("X_APPY_TTR", X_APPY_TTR);
-            urlConnection.addRequestProperty("X_APPY_UTYPE", X_APPY_UTYPE);
-            urlConnection.addRequestProperty("X_APPY_MSISDN", X_APPY_MSISDN);
-            urlConnection.addRequestProperty("X_APPY_IS_NEW_USER", X_APPY_IS_NEW_USER);
-            urlConnection.addRequestProperty("X_APPY_API_KEY", X_APPY_API_KEY);
-            urlConnection.setRequestMethod("GET");
-            in = new BufferedInputStream(urlConnection.getInputStream());
-            return convertStreamToString(in);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            // caliing the function it return the datafetched from url as String format
+            String data = Utility.readDataFromServer(strings[0]);
+            try {
+
+                // crearing the json object of url data
+                JSONObject jsonobject = new JSONObject(data);
+                // creating the subjson array in jsonobject
+                JSONObject subjsonobject = jsonobject.getJSONObject("Responsedetails");
+
+                // reading json array which is in responce details
+                JSONArray jsonArray = subjsonobject.getJSONArray("category_id_array");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject arrayobject = jsonArray.getJSONObject(i);
+                    catogory_name = arrayobject.getString("category_name");
+                    category_id = arrayobject.getString("category_id");
+                    parent_category_id = arrayobject.getString("parent_category_id");
+                    parent_category_name = arrayobject.getString("parent_category_name");
+                    //JSONArray contentJson = arrayobject.getJSONArray("image_path");
+                    JSONObject urlobject = arrayobject.getJSONObject("image_path");
+                    String url = urlobject.getString("50x50");
+                    image = Utility.imageDownload(url);
+                    mListofCategory.add(new Categorymodel(catogory_name,category_id,parent_category_id,parent_category_name,image));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return mListofCategory;
+
         }
-
-        return null;
     }
 
-    private static String convertStreamToString(java.io.InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
 
-    }
 
-    public static ArrayList CatogoryViewtoCatogoryviewmodel(ArrayList<Categorymodel> viewmodel){
-
-        ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
-        for(int i=0;i<viewmodel.size();i++){
-            Categorymodel model = viewmodel.get(i);
-            String title = model.getTitle();
-            Bitmap image = model.getImage();
-            viewmodellist.add(new CategoryViewmodel(title,image));
-        }
-        return viewmodellist;
-    }
 
 
 }

@@ -1,10 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:imageCoverFlow="http://schemas.android.com/apk/lib/com.bridgelabz.appystore.view.CategoryView"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_content_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bridgelabz.appystore.view.CategoryView">
+    android:background="@drawable/bg"
+    tools:context="com.bridgelabz.appystore.view.CategoryView"
+    android:orientation="vertical"
+    android:baselineAligned="false">
 
-</android.support.constraint.ConstraintLayout>
+<LinearLayout
+    android:layout_marginTop="8dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:weightSum="10">
+    <ImageView
+        android:layout_marginLeft="8dp"
+        android:layout_width="0dp"
+        android:src="@drawable/image"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <TextView
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/song"
+        android:src="@drawable/videoicon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <TextView
+        android:layout_weight="0.5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/history"
+        android:src="@drawable/songicon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <TextView
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/videos"
+        android:layout_width="0dp"
+        android:src="@drawable/history"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+    <TextView
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_marginRight="10dp"
+        android:id="@+id/search"
+        android:src="@drawable/search"
+        android:background="@drawable/backround_circle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_marginTop="5dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <com.bridgelabz.appystore.librarycarosal.CoverFlowView
+        android:id="@+id/coverflow"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        imageCoverFlow:coverflowGravity="center_vertical"
+        imageCoverFlow:coverflowLayoutMode="wrap_content"
+        imageCoverFlow:enableReflection="true"
+        imageCoverFlow:reflectionGap="10dp"
+        imageCoverFlow:reflectionHeight="75%"
+        imageCoverFlow:reflectionShaderEnable="true"
+        imageCoverFlow:visibleImage="11" >
+    </com.bridgelabz.appystore.librarycarosal.CoverFlowView>
+    <TextView
+        android:id="@+id/displayname"
+        android:textSize="50dp"
+        android:hint="catogories"
+        android:textColor="#FF0000"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/spinnertext"
+            android:layout_width="match_parent"
+            android:text="please wait data is loading...."
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>

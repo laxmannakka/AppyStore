@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:imageCoverFlow="http://schemas.android.com/apk/lib/com.bridgelabz.appystore.view.ContentListview"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_content_list_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.bridgelabz.appystore.view.ContentListView"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:weightSum="10">
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:layout_width="0dp"
+            android:src="@drawable/image"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/song"
+            android:src="@drawable/videoicon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/history"
+            android:src="@drawable/songicon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/videos"
+            android:layout_width="0dp"
+            android:src="@drawable/history"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:id="@+id/search"
+            android:src="@drawable/search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/textview"
+        android:gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_gravity="center"
+        android:textColor="#800080"
+        android:text="List of Videos"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.35">
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
