@@ -31,23 +31,18 @@ public class CategoryView extends AppCompatActivity {
     TextView textView;
     ArrayList<CategoryViewmodel> model;
     TextView mdisplaytitle;
-    public transient Context mContext;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Inflating the layout
-
-
-         view = LayoutInflater.from(this).inflate(R.layout.activity_content_view, null, false);
+        view = LayoutInflater.from(this).inflate(R.layout.activity_content_view, null, false);
         spinner= (ProgressBar) view.findViewById(R.id.progressBar1);
         textView = (TextView) view.findViewById(R.id.spinnertext);
         mdisplaytitle=(TextView)view.findViewById(R.id.displayname);
         // set the view
         setContentView(view);
-
-
 
         // Initilizing the Coverflow view
         final CoverFlowView<MyCoverFlowAdapter> mCoverFlowView = (CoverFlowView<MyCoverFlowAdapter>) findViewById(R.id.coverflow);
@@ -55,28 +50,29 @@ public class CategoryView extends AppCompatActivity {
         // Creating tha object of Category viewmodel
         CategoryViewmodel categoryViewmodel = new CategoryViewmodel();
 
-        // INitilizing the arraylist
+        // Initilizing the arraylist
         mListofContent = new ArrayList<>();
 
+       /* populateDummydata();*/
+
+
+
         // getting the viewmodel data
-        mListofContent= categoryViewmodel.getViewmodeldata(new FetchView() {
+         categoryViewmodel.getViewmodeldata(new FetchView() {
 
             @Override
             public void getviewdata(ArrayList<CategoryViewmodel> viewmodelArrayList) {
-              model = viewmodelArrayList;
+              mListofContent = viewmodelArrayList;
 
                 spinner.setVisibility(view.INVISIBLE);
                 textView.setVisibility(view.INVISIBLE);
-                final MyCoverFlowAdapter adapter = new MyCoverFlowAdapter(CategoryView.this,model);
+                final MyCoverFlowAdapter adapter = new MyCoverFlowAdapter(CategoryView.this,mListofContent);
                 mCoverFlowView.setAdapter(adapter);
-
-
             }
         });
 
 
-        mCoverFlowView
-                .setCoverFlowListener(new CoverFlowView.CoverFlowListener<MyCoverFlowAdapter>() {
+        mCoverFlowView.setCoverFlowListener(new CoverFlowView.CoverFlowListener<MyCoverFlowAdapter>() {
 
                     @Override
                     public void imageOnTop(
@@ -84,7 +80,7 @@ public class CategoryView extends AppCompatActivity {
                             int position, float left, float top, float right,
                             float bottom) {
                         Log.e(VIEW_LOG_TAG, position + " on top!");
-                        mdisplaytitle.setText(model.get(position).getTitle());
+                        mdisplaytitle.setText(mListofContent.get(position).getTitle());
                     }
 
                     @Override
@@ -92,7 +88,7 @@ public class CategoryView extends AppCompatActivity {
                             CoverFlowView<MyCoverFlowAdapter> view, int position) {
                         Log.e(VIEW_LOG_TAG, position + " clicked!");
                         Toast.makeText(getBaseContext(),"Position"+position,Toast.LENGTH_SHORT).show();
-                        CategoryViewmodel model2 = model.get(position);
+                        CategoryViewmodel model2 = mListofContent.get(position);
                         String pid = model2.getPid();
                         String cid =model2.getCid();
                         Intent contentlist = new Intent(CategoryView.this,ContentListView.class);

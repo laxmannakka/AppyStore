@@ -14,11 +14,11 @@ public class ContentListmodel {
     Bitmap image;
     String durationofvideo;
 
-    public ContentListmodel(String title, String imageUrl, String videoUrl, Bitmap image, String durationofvideo) {
+    public ContentListmodel(String title, String imageUrl, String videoUrl, /*Bitmap image,*/ String durationofvideo) {
         this.title = title;
         this.imageUrl = imageUrl;
         this.videoUrl = videoUrl;
-        this.image = image;
+      //  this.image = image;
         this.durationofvideo = durationofvideo;
     }
 

@@ -22,15 +22,23 @@ public class Categorymodel {
     String image_path;
     String sub_category_id;
     Bitmap image;
+    String url;
 
+    public String getUrl() {
+        return url;
+    }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-    public Categorymodel(String category_name, String category_id, String parent_category_id, String parent_category_name, Bitmap image) {
+    public Categorymodel(String category_name, String category_id, String parent_category_id, String parent_category_name, String url,Bitmap image) {
         this.category_name = category_name;
         this.category_id = category_id;
         this.parent_category_id = parent_category_id;
         this.parent_category_name = parent_category_name;
-        this.image = image;
+        this. url= url;
+        this.image=image;
     }
 
     public String getCategory_name() {

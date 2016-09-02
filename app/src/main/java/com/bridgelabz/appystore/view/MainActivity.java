@@ -11,13 +11,15 @@ import com.bridgelabz.appystore.R;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    //Button for login
     Button mlogin;
+    //display the text
     TextView mtextview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mlogin= (Button) findViewById(R.id.button);
         mtextview = (TextView) findViewById(R.id.textview2);
         mlogin.setOnClickListener(new View.OnClickListener() {
@@ -37,10 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
-
-
 
 }

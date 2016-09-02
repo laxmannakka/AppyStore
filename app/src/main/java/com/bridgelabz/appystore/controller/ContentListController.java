@@ -58,9 +58,9 @@ public class ContentListController {
                     String title = object.getString("title");
                     String imageurl = object.getString("image_path");
                     String videourl=object.getString("dnld_url");
-                    Bitmap image= Utility.imageDownload(imageurl);
+//                    Bitmap image= Utility.imageDownload(imageurl);
                     String duration = object.getString("content_duration");
-                    mContentlist.add(new ContentListmodel(title,imageurl,videourl,image,duration));
+                    mContentlist.add(new ContentListmodel(title,imageurl,videourl,duration));
 
                 }
             } catch (JSONException e1) {
@@ -73,12 +73,10 @@ public class ContentListController {
 
     }
 
-    public  void populateContentlistViewmodel(String pid, final String cid, final DownloadCompleted dataready){
-            moffset = moffset+4;
-
+    public  void populateContentlistViewmodel(String pid, final String cid,int offset,final DownloadCompleted dataready){
 
         String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getContentList&" +
-                "content_type=videos&limit=5&offset="+moffset+"&"+cid+"=176&pcatid="+pid+"&age=1.5&incl_age=5";
+                "content_type=videos&limit=5&offset="+offset+"&"+cid+"=176&pcatid="+pid+"&age=1.5&incl_age=5";
 
       /*  String url ="http://beta.appystore.in/appy_app/appyApi_handler.php?method=getContentList&content_type=videos&limit=5&offset=0&catid=175&pcatid=174&age=1.5&incl_age=5";*/
 
@@ -90,9 +88,10 @@ public class ContentListController {
                 for(int i=0;i<data.size();i++){
                     ContentListmodel contentListmodel = data.get(i);
                     String title = contentListmodel.getTitle();
-                    Bitmap image = contentListmodel.getImage();
+                    String url =contentListmodel.getImageUrl();
+                 //   Bitmap image = contentListmodel.getImage();
                     String videourl = contentListmodel.getVideoUrl();
-                    contentviewmodellist.add(new ContentListViewmodel(title,image,videourl));
+                    contentviewmodellist.add(new ContentListViewmodel(title,url,videourl));
                 }
                 dataready.getcontentlistviewmodeldata(contentviewmodellist);
             }

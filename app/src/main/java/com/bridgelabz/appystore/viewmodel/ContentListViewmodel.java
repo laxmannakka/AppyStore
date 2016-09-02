@@ -1,65 +1,110 @@
 package com.bridgelabz.appystore.viewmodel;
 
+import android.databinding.BaseObservable;
+import android.databinding.BindingAdapter;
 import android.graphics.Bitmap;
+import android.widget.ImageView;
 
-import com.bridgelabz.appystore.controller.CategoryController;
 import com.bridgelabz.appystore.controller.ContentListController;
-import com.bridgelabz.appystore.interfaces.Dataready;
 import com.bridgelabz.appystore.interfaces.DownloadCompleted;
 import com.bridgelabz.appystore.interfaces.FetchContentLIst;
-import com.bridgelabz.appystore.interfaces.FetchView;
-import com.bridgelabz.appystore.model.ContentListmodel;
-import com.bridgelabz.appystore.view.ContentListView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
 /**
  * Created by bridgeit007 on 27/8/16.
+ * <Purpose>:
+ * <p>
+ * This class shows the Contentlist  model
+ * it performs  the  operation of all the variables getter and setters
+ * and content list model will come over here
  */
 
-public class ContentListViewmodel {
+public class ContentListViewmodel extends BaseObservable{
 
-    String title;
-    Bitmap contentImage;
-    String url;
+    String title; // for title of contentlist
+    Bitmap contentImage; // for image
+    String videourl; // video url
+    String imageurl; // image url
 
-    // Constructor
-    public ContentListViewmodel(String title,Bitmap image,String url){
-        this.title=title;
-        this.contentImage=image;
-        this.url =url;
+  // Creating the object of controller
+    ContentListController controller = new ContentListController();
+  //initilizing the Content list array list
+    ArrayList<ContentListViewmodel> mcontentviewmodelist = new ArrayList<>();
+
+    // Constructor of this class
+    public ContentListViewmodel(String title,/* Bitmap image*/String imageurl, String url) {
+        this.title = title;
+       /* this.contentImage = image;*/
+        this.imageurl=imageurl;
+        this.videourl = url;
     }
 
+
+    //Empty constructor
+    public ContentListViewmodel() {
+    }
+
+    //Getter of bitmap
     public Bitmap getContentImage() {
         return contentImage;
     }
 
+    //Gettet  of title
     public String getTitle() {
         return title;
     }
 
-    ContentListController controller = new ContentListController();
-    ArrayList<ContentListViewmodel> mcontentviewmodelist =  new ArrayList<>();
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public ContentListViewmodel(){}
+    public String getImageurl() {
+        return imageurl;
+    }
 
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
+    }
 
-    CategoryController categoryController = new CategoryController();
+    public String getVideourl() {
+        return videourl;
+    }
 
-    public  void  getContentListViewmodeldata(String pid, String cid, final FetchContentLIst fetchView){
+    public void setVideourl(String videourl) {
+        this.videourl = videourl;
+    }
 
-        controller.populateContentlistViewmodel(pid, cid, new DownloadCompleted() {
+    /**
+     * This function get the Content listviewmodel
+     *
+     * **/
+
+    public void getContentListViewmodeldata(String pid, String cid, int offset, final FetchContentLIst fetchView) {
+
+        controller.populateContentlistViewmodel(pid, cid, offset, new DownloadCompleted() {
             @Override
             public void getcontentlistviewmodeldata(ArrayList<ContentListViewmodel> data) {
 
-                mcontentviewmodelist=data;
+                mcontentviewmodelist = data;
                 fetchView.getcontentviewdata(mcontentviewmodelist);
-
 
             }
         });
 
     }
+
+    /*@BindingAdapter({"bind:imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl) {
+
+        Glide.with(view.getContext()).load(imageUrl)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(view);
+    }*/
 
 }
 

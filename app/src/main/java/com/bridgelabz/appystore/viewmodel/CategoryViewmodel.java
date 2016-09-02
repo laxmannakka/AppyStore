@@ -2,8 +2,8 @@ package com.bridgelabz.appystore.viewmodel;
 
 import android.graphics.Bitmap;
 
+import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.controller.CategoryController;
-import com.bridgelabz.appystore.interfaces.Asyntask;
 import com.bridgelabz.appystore.interfaces.Dataready;
 import com.bridgelabz.appystore.interfaces.FetchView;
 
@@ -12,33 +12,55 @@ import java.util.ArrayList;
 
 /**
  * Created by bridgeit007 on 19/8/16.
- *
- * <Purpose>
+ * <p>
+ * <Purpose>:
  *
  * This class shows the Category model
- *
  */
 
 public class CategoryViewmodel implements Serializable {
+
+
+    // this variable  holds the title
     String title;
+    // this varible holds the image
     Bitmap image;
+    // this varible holds the parent category id
     String pid;
+    // this variable holds ths catogory id
     String cid;
+    // this is for url
     String url;
+    //Arraylist of Catogory model it holds the viewmodle list
+    ArrayList<CategoryViewmodel> viewmodlelist = new ArrayList<>();
+    // Creating the object of Categorycontroller
+    CategoryController categoryController = new CategoryController();
+
     //creating the constructor taking arguments title,bitmap
     public CategoryViewmodel(String title, Bitmap image) {
         this.title = title;
         this.image = image;
     }
 
-    public CategoryViewmodel(String title, Bitmap image, String pid, String cid,String url) {
+    /**
+     * this category maodl constructer
+     * it takes the arguments title,image,pid ,cid url
+     **/
+    public CategoryViewmodel(String title, String pid, String cid, Bitmap image) {
         this.title = title;
         this.image = image;
         this.pid = pid;
         this.cid = cid;
-        this.url =url;
     }
 
+    // Empty constructor of this class
+    public CategoryViewmodel() {
+
+    }
+
+    /**
+     * getter and setter for all varibles
+     **/
     public String getUrl() {
         return url;
     }
@@ -79,33 +101,53 @@ public class CategoryViewmodel implements Serializable {
         this.cid = cid;
     }
 
-    ArrayList<CategoryViewmodel> viewmodlelist = new ArrayList<>();
-
- // Creating the object of Categorycontroller
-    CategoryController categoryController = new CategoryController();
-
-    public CategoryViewmodel() {
-
-    }
 
 
+  /* *//* public ArrayList<CategoryViewmodel> populateDummydata(){
 
-    //Function for get the viewmodel data
-    public ArrayList<CategoryViewmodel> getViewmodeldata(final FetchView fetchView){
+        ArrayList<CategoryViewmodel> dummlist = new ArrayList<>();
+        int iconC[] = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.
+                ic_number3};
+        String titleC[] = {"ABCD", "XYZ", "PQRS"};
+        for (int i = 0; i < iconC.length && i < titleC.length; i++)
+        {
+            ContentListInfo currentC =  new ContentListInfo();
+            currentC.mControllerImageLink = iconC[i];
+            currentC.mControllerTitle = titleC[i];
+            populateDummyContentViewData2(currentC);
+        }*//*
 
-        final ArrayList<CategoryViewmodel> viewmodel= categoryController.populateViewmodel(new Dataready() {
+
+
+}
+    return dummlist;*/
+
+
+
+
+
+
+    /**
+     * this function get the viewmodel data
+     * here performing the call back mechanism get the data from controller
+     * and return ths list which we are getting
+     **/
+
+    public ArrayList<CategoryViewmodel> getViewmodeldata(final FetchView fetchView) {
+
+        final ArrayList<CategoryViewmodel> viewmodel = categoryController.populateViewmodel(new Dataready() {
+            // overide method will execute the when the responce come from the populatemodel function
             @Override
             public void getviewmodeldata(ArrayList<CategoryViewmodel> data) {
 
-                viewmodlelist=data;
+                viewmodlelist = data;
                 fetchView.getviewdata(viewmodlelist);
             }
         });
 
-        return viewmodlelist;
+        return viewmodlelist; // returning the arraylist of data
 
-   }
-
+    }
 
 
 }

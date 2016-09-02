@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.adapters.RecyclerAdapter;
 import com.bridgelabz.appystore.controller.EndlessRecyclerOnScrollListener;
+import com.bridgelabz.appystore.interfaces.ClickListener;
 import com.bridgelabz.appystore.interfaces.FetchContentLIst;
 import com.bridgelabz.appystore.interfaces.FetchView;
+import com.bridgelabz.appystore.utility.RecyclerTouchListener;
 import com.bridgelabz.appystore.viewmodel.CategoryViewmodel;
 import com.bridgelabz.appystore.viewmodel.ContentListViewmodel;
 
@@ -24,11 +28,12 @@ public class ContentListView extends AppCompatActivity {
     ArrayList<ContentListView> mListofContent;
     int value;
     RecyclerView recyclerView;
-    List<String> mList = new ArrayList<>();
     RecyclerAdapter recyclerAdapter;
     private GridLayoutManager lLayout;
     String pid;
     String cid;
+    int moffset=0;
+
     public ArrayList<ContentListViewmodel> viewmodeldata = new ArrayList<>();
 
 
@@ -55,7 +60,7 @@ public class ContentListView extends AppCompatActivity {
         final ContentListViewmodel viewmodel = new ContentListViewmodel();
 
 
-        viewmodel.getContentListViewmodeldata(pid, cid, new FetchContentLIst() {
+        viewmodel.getContentListViewmodeldata(pid, cid,moffset, new FetchContentLIst() {
             @Override
             public void getcontentviewdata(ArrayList<ContentListViewmodel> viewmodelArrayList) {
 
@@ -68,8 +73,8 @@ public class ContentListView extends AppCompatActivity {
         recyclerView.setOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int current_page) {
-
-                viewmodel.getContentListViewmodeldata(pid, cid, new FetchContentLIst() {
+                moffset=moffset+5;
+                viewmodel.getContentListViewmodeldata(pid, cid,moffset ,new FetchContentLIst() {
                     @Override
                     public void getcontentviewdata(ArrayList<ContentListViewmodel> viewmodelArrayList) {
 
@@ -88,6 +93,23 @@ public class ContentListView extends AppCompatActivity {
 
             }
         });
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+            ContentListViewmodel dataposition = viewmodeldata.get(position);
+                Toast.makeText(getApplicationContext(),"messageusrl"+dataposition.getVideourl(),Toast.LENGTH_LONG).show();
+                Intent videoview = new Intent(ContentListView.this,VideoPlayer.class);
+                videoview.putExtra("videourl",dataposition.getVideourl());
+                startActivity(videoview);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
     }
 }
 

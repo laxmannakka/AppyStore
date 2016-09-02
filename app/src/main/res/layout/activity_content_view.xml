@@ -12,94 +12,94 @@
     android:orientation="vertical"
     android:baselineAligned="false">
 
-<LinearLayout
-    android:layout_marginTop="8dp"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:weightSum="10">
-    <ImageView
-        android:layout_marginLeft="8dp"
-        android:layout_width="0dp"
-        android:src="@drawable/image"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:layout_weight="2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:id="@+id/song"
-        android:src="@drawable/videoicon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:layout_weight="0.5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
-
-    <ImageView
-        android:id="@+id/history"
-        android:src="@drawable/songicon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:weightSum="10">
+        <ImageView
+            android:layout_marginLeft="8dp"
+            android:layout_width="0dp"
+            android:src="@drawable/image"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/song"
+            android:src="@drawable/videoicon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
             android:layout_weight="0.5"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/videos"
-        android:layout_width="0dp"
-        android:src="@drawable/history"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <TextView
-        android:layout_weight="2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/history"
+            android:src="@drawable/songicon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-    <ImageView
-        android:layout_marginRight="10dp"
-        android:id="@+id/search"
-        android:src="@drawable/search"
-        android:background="@drawable/backround_circle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/videos"
+            android:layout_width="0dp"
+            android:src="@drawable/history"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-<LinearLayout
-    android:layout_marginTop="5dp"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="150dp">
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:id="@+id/search"
+            android:src="@drawable/search"
+            android:background="@drawable/backround_circle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
 
-    <com.bridgelabz.appystore.librarycarosal.CoverFlowView
-        android:id="@+id/coverflow"
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        imageCoverFlow:coverflowGravity="center_vertical"
-        imageCoverFlow:coverflowLayoutMode="wrap_content"
-        imageCoverFlow:enableReflection="true"
-        imageCoverFlow:reflectionGap="10dp"
-        imageCoverFlow:reflectionHeight="75%"
-        imageCoverFlow:reflectionShaderEnable="true"
-        imageCoverFlow:visibleImage="11" >
-    </com.bridgelabz.appystore.librarycarosal.CoverFlowView>
-    <TextView
-        android:id="@+id/displayname"
-        android:textSize="50dp"
-        android:hint="catogories"
-        android:textColor="#FF0000"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="150dp">
+
+        <com.bridgelabz.appystore.librarycarosal.CoverFlowView
+            android:id="@+id/coverflow"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            imageCoverFlow:coverflowGravity="center_vertical"
+            imageCoverFlow:coverflowLayoutMode="wrap_content"
+            imageCoverFlow:enableReflection="true"
+            imageCoverFlow:reflectionGap="10dp"
+            imageCoverFlow:reflectionHeight="75%"
+            imageCoverFlow:reflectionShaderEnable="true"
+            imageCoverFlow:visibleImage="11" >
+        </com.bridgelabz.appystore.librarycarosal.CoverFlowView>
+        <TextView
+            android:id="@+id/displayname"
+            android:textSize="50dp"
+            android:hint="catogories"
+            android:textColor="#FF0000"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginTop="100dp"
@@ -117,7 +117,6 @@
             android:id="@+id/spinnertext"
             android:layout_width="match_parent"
             android:text="please wait data is loading...."
-            android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/colorAccent"
             android:layout_height="wrap_content" />

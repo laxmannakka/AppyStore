@@ -52,7 +52,6 @@ public class CategoryController {
 
 
     // function for Populate viewmodel
-
     public ArrayList<CategoryViewmodel> populateViewmodel(final Dataready dataready) {
 
         // calling the rest call
@@ -65,11 +64,11 @@ public class CategoryController {
                 for (int i = 0; i < categorylist.size(); i++) {
                     Categorymodel model = categorylist.get(i);
                     String title = model.getCategory_name();
-                    Bitmap image = model.getImage();
+                   Bitmap image = model.getImage();
                     String pid =model.getParent_category_id();
                     String cid = model.getCategory_id();
                     String url =model.getImage_path();
-                    viewmodellist.add(new CategoryViewmodel(title, image,pid,cid,url));
+                    viewmodellist.add(new CategoryViewmodel(title, pid,cid,image));
                 }
                 dataready.getviewmodeldata(viewmodellist);
             }
@@ -111,8 +110,8 @@ public class CategoryController {
                     //JSONArray contentJson = arrayobject.getJSONArray("image_path");
                     JSONObject urlobject = arrayobject.getJSONObject("image_path");
                     String url = urlobject.getString("50x50");
-                    image = Utility.imageDownload(url);
-                    mListofCategory.add(new Categorymodel(catogory_name,category_id,parent_category_id,parent_category_name,image));
+                   image = Utility.imageDownload(url);
+                    mListofCategory.add(new Categorymodel(catogory_name,category_id,parent_category_id,parent_category_name,url,image));
                 }
 
             } catch (JSONException e) {
