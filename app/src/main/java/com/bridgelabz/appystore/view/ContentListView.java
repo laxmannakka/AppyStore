@@ -102,7 +102,6 @@ public class ContentListView extends AppCompatActivity {
                 Intent videoview = new Intent(ContentListView.this,VideoPlayer.class);
                 videoview.putExtra("videourl",dataposition.getVideourl());
                 startActivity(videoview);
-
             }
 
             @Override

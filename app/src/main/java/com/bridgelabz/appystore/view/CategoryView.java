@@ -31,6 +31,7 @@ public class CategoryView extends AppCompatActivity {
     TextView textView;
     ArrayList<CategoryViewmodel> model;
     TextView mdisplaytitle;
+    MyCoverFlowAdapter adapter;
 
 
     @Override
@@ -48,13 +49,14 @@ public class CategoryView extends AppCompatActivity {
         final CoverFlowView<MyCoverFlowAdapter> mCoverFlowView = (CoverFlowView<MyCoverFlowAdapter>) findViewById(R.id.coverflow);
 
         // Creating tha object of Category viewmodel
-        CategoryViewmodel categoryViewmodel = new CategoryViewmodel();
+        final CategoryViewmodel categoryViewmodel = new CategoryViewmodel();
 
         // Initilizing the arraylist
         mListofContent = new ArrayList<>();
 
-       /* populateDummydata();*/
-
+     mListofContent = categoryViewmodel.populateDummydata(this);
+        adapter = new MyCoverFlowAdapter(CategoryView.this,mListofContent);
+        mCoverFlowView.setAdapter(adapter);
 
 
         // getting the viewmodel data
@@ -62,12 +64,15 @@ public class CategoryView extends AppCompatActivity {
 
             @Override
             public void getviewdata(ArrayList<CategoryViewmodel> viewmodelArrayList) {
-              mListofContent = viewmodelArrayList;
-
+              mListofContent.clear();
+                mListofContent= viewmodelArrayList;
                 spinner.setVisibility(view.INVISIBLE);
                 textView.setVisibility(view.INVISIBLE);
-                final MyCoverFlowAdapter adapter = new MyCoverFlowAdapter(CategoryView.this,mListofContent);
+                adapter =  new MyCoverFlowAdapter(CategoryView.this,mListofContent);
                 mCoverFlowView.setAdapter(adapter);
+/*
+                final MyCoverFlowAdapter adapter = new MyCoverFlowAdapter(CategoryView.this,mListofContent);
+*/
             }
         });
 

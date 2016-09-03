@@ -1,6 +1,8 @@
 package com.bridgelabz.appystore.viewmodel;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.controller.CategoryController;
@@ -103,25 +105,22 @@ public class CategoryViewmodel implements Serializable {
 
 
 
-  /* *//* public ArrayList<CategoryViewmodel> populateDummydata(){
+    public ArrayList<CategoryViewmodel> populateDummydata(Context mcontext) {
 
         ArrayList<CategoryViewmodel> dummlist = new ArrayList<>();
-        int iconC[] = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.
-                ic_number3};
+        int iconC[] = {R.drawable.ic_launcher, R.drawable.ic_launcher1, R.drawable.
+                ic_launcher};
         String titleC[] = {"ABCD", "XYZ", "PQRS"};
-        for (int i = 0; i < iconC.length && i < titleC.length; i++)
-        {
-            ContentListInfo currentC =  new ContentListInfo();
-            currentC.mControllerImageLink = iconC[i];
-            currentC.mControllerTitle = titleC[i];
-            populateDummyContentViewData2(currentC);
-        }*//*
+        for (int i = 0; i <10; i++) {
+            Bitmap icon = BitmapFactory.decodeResource(mcontext.getResources(), iconC[2]);
+            CategoryViewmodel currentC = new CategoryViewmodel();
+            currentC.image = icon;
+            currentC.title= titleC[2];
+            dummlist.add(currentC);
+        }
 
-
-
-}
-    return dummlist;*/
-
+        return dummlist;
+    }
 
 
 
