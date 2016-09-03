@@ -9,10 +9,8 @@ import android.widget.ImageView;
 import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.librarycarosal.CoverFlowAdapter;
 import com.bridgelabz.appystore.viewmodel.CategoryViewmodel;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by bridgeit007 on 30/8/16.
@@ -36,6 +34,10 @@ public class MyCoverFlowAdapter extends CoverFlowAdapter {
         this.viewmodellist = model;
         inflater = LayoutInflater.from(context);
         view = inflater.inflate(R.layout.custom_layout, null);
+
+        for(CategoryViewmodel categoryViewmodel:model){
+            categoryViewmodel.setImage(getScreenViewBitmap(view,categoryViewmodel.getImage()));
+        }
     }
 
 
@@ -45,12 +47,8 @@ public class MyCoverFlowAdapter extends CoverFlowAdapter {
     }
 
     @Override
-    public Bitmap getImage(final int position) {
-
-       Bitmap image = viewmodellist.get(position).getImage();
-
-            Bitmap bgimage = getScreenViewBitmap(view, image);
-            return image;
+    public Bitmap getImage(int position) {
+        return  viewmodellist.get(position).getImage();
     }
 
 
@@ -60,7 +58,7 @@ public class MyCoverFlowAdapter extends CoverFlowAdapter {
         view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) view.findViewById(R.id.carosalbg);
         imageView.setImageBitmap(bitmap);
         view.buildDrawingCache(true);
         Bitmap l=view.getDrawingCache();

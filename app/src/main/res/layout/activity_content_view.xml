@@ -80,7 +80,7 @@
         <com.bridgelabz.appystore.librarycarosal.CoverFlowView
             android:id="@+id/coverflow"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             imageCoverFlow:coverflowGravity="center_vertical"
             imageCoverFlow:coverflowLayoutMode="wrap_content"
