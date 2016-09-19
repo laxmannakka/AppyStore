@@ -2,28 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="150dp"
+    android:layout_marginRight="10dp"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:layout_marginTop="5dp"
         android:layout_width="150dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/contentlist_backgroundview"
         android:layout_height="150dp">
 
         <ImageView
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="150dp"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
             android:src="@drawable/bg"
-            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:layout_height="match_parent"
             android:id="@+id/myImageView" />
 
         <TextView
+            android:layout_below="@+id/myImageView"
+            android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
             android:layout_alignBottom="@+id/myImageView"
             android:id="@+id/myImageViewText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
             android:text="Hello"
-            android:gravity="bottom"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:textColor="#000000" />
+        <ImageView
+            android:id="@+id/vidoeicon"
+            android:src="@drawable/iconsongrelativelayout"
+            android:layout_width="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignLeft="@+id/myImageView"
+            android:layout_above="@+id/myImageViewText"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
+
+        <ImageView
+            android:layout_alignBottom="@+id/myImageViewText"
+            android:id="@+id/doticon"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/dot"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <!--<ImageView
             android:layout_marginRight="10dp"

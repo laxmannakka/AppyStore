@@ -7,7 +7,9 @@
     android:background="@drawable/relativebg"
     android:id="@+id/constraintLayout">
 
+
     <ImageView
+
         android:layout_width="316dp"
         android:layout_height="491dp"
         app:srcCompat="@drawable/bg"
@@ -24,7 +26,7 @@
 
     <TextView
         android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_height="100dp"
         android:id="@+id/textView2"
         android:background="@drawable/backroundview"
         app:layout_constraintRight_toRightOf="@+id/constraintLayout"

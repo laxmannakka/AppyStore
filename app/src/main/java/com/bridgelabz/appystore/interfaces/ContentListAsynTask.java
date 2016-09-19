@@ -11,5 +11,5 @@ import java.util.ArrayList;
  */
 
 public interface ContentListAsynTask {
-     void getContentListDataFromServer(ArrayList<ContentListmodel> data);
+     void loadedContentListDataFromServer(ArrayList<ContentListmodel> data);
 }

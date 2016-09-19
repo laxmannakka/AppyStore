@@ -1,15 +1,10 @@
 package com.bridgelabz.appystore.controller;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
-import com.bridgelabz.appystore.interfaces.Asyntask;
-import com.bridgelabz.appystore.interfaces.Backgroundpross;
-import com.bridgelabz.appystore.interfaces.Dataready;
-import com.bridgelabz.appystore.interfaces.DownloadCompleted;
-import com.bridgelabz.appystore.model.Categorymodel;
+import com.bridgelabz.appystore.interfaces.ContentListAsynTask;
+import com.bridgelabz.appystore.interfaces.ContentListDataDownloadCompleted;
 import com.bridgelabz.appystore.model.ContentListmodel;
-import com.bridgelabz.appystore.viewmodel.CategoryViewmodel;
 import com.bridgelabz.appystore.viewmodel.ContentListViewmodel;
 
 import org.json.JSONArray;
@@ -27,13 +22,13 @@ public class ContentListController {
     int moffset =0;
 
 
-    public void loadContentlistfromserver(String url, final Backgroundpross asyntask){
+    public void loadContentListFromServer(String url, final ContentListAsynTask asyntask){
 
 
         ContentListRestService object= new ContentListRestService(){
             @Override
             protected void onPostExecute(ArrayList arrayList) {
-                asyntask.getContentlsitdatafromserver(arrayList);
+                asyntask.loadedContentListDataFromServer(arrayList);
             }
         };
         object.execute(url);
@@ -44,7 +39,7 @@ public class ContentListController {
 
         @Override
         protected ArrayList doInBackground(String... strings) {
-            String contetjsondata = Utility.readDataFromServer(strings[0]);
+            String contetjsondata = HttpManager.readDataFromServer(strings[0]);
             ArrayList<ContentListmodel> mContentlist = new ArrayList<>();
 
 
@@ -58,7 +53,7 @@ public class ContentListController {
                     String title = object.getString("title");
                     String imageurl = object.getString("image_path");
                     String videourl=object.getString("dnld_url");
-//                    Bitmap image= Utility.imageDownload(imageurl);
+//                    Bitmap image= HttpManager.imageDownload(imageurl);
                     String duration = object.getString("content_duration");
                     mContentlist.add(new ContentListmodel(title,imageurl,videourl,duration));
 
@@ -73,16 +68,14 @@ public class ContentListController {
 
     }
 
-    public  void populateContentlistViewmodel(String pid, final String cid,int offset,final DownloadCompleted dataready){
+    public  void populateContentListViewModel(String pid, final String cid, int offset, final ContentListDataDownloadCompleted dataready){
 
         String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getContentList&" +
                 "content_type=videos&limit=5&offset="+offset+"&"+cid+"=176&pcatid="+pid+"&age=1.5&incl_age=5";
 
-      /*  String url ="http://beta.appystore.in/appy_app/appyApi_handler.php?method=getContentList&content_type=videos&limit=5&offset=0&catid=175&pcatid=174&age=1.5&incl_age=5";*/
-
-        loadContentlistfromserver(url, new Backgroundpross() {
+        loadContentListFromServer(url, new ContentListAsynTask() {
             @Override
-            public void getContentlsitdatafromserver(ArrayList<ContentListmodel> data) {
+            public void loadedContentListDataFromServer(ArrayList<ContentListmodel> data) {
 
                 ArrayList<ContentListViewmodel> contentviewmodellist =new ArrayList<ContentListViewmodel>();
                 for(int i=0;i<data.size();i++){
@@ -93,7 +86,7 @@ public class ContentListController {
                     String videourl = contentListmodel.getVideoUrl();
                     contentviewmodellist.add(new ContentListViewmodel(title,url,videourl));
                 }
-                dataready.getcontentlistviewmodeldata(contentviewmodellist);
+                dataready.receivedContentListViewModelData(contentviewmodellist);
             }
         });
     }

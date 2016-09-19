@@ -1,15 +1,11 @@
 package com.bridgelabz.appystore.viewmodel;
 
 import android.databinding.BaseObservable;
-import android.databinding.BindingAdapter;
 import android.graphics.Bitmap;
-import android.widget.ImageView;
 
 import com.bridgelabz.appystore.controller.ContentListController;
-import com.bridgelabz.appystore.interfaces.DownloadCompleted;
-import com.bridgelabz.appystore.interfaces.FetchContentLIst;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bridgelabz.appystore.interfaces.ContentListDataDownloadCompleted;
+import com.bridgelabz.appystore.interfaces.FetchContentList;
 
 import java.util.ArrayList;
 
@@ -82,30 +78,19 @@ public class ContentListViewmodel extends BaseObservable{
      *
      * **/
 
-    public void getContentListViewmodeldata(String pid, String cid, int offset, final FetchContentLIst fetchView) {
+    public void getContentListViewmodeldata(String pid, String cid, int offset, final FetchContentList fetchView) {
 
-        controller.populateContentlistViewmodel(pid, cid, offset, new DownloadCompleted() {
+        controller.populateContentListViewModel(pid, cid, offset, new ContentListDataDownloadCompleted() {
             @Override
-            public void getcontentlistviewmodeldata(ArrayList<ContentListViewmodel> data) {
+            public void receivedContentListViewModelData(ArrayList<ContentListViewmodel> data) {
 
                 mcontentviewmodelist = data;
-                fetchView.getcontentviewdata(mcontentviewmodelist);
+                fetchView.receivedContentViewData(mcontentviewmodelist);
 
             }
         });
 
     }
-
-    /*@BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-
-        Glide.with(view.getContext()).load(imageUrl)
-                .thumbnail(0.5f)
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(view);
-    }*/
-
 }
 
 

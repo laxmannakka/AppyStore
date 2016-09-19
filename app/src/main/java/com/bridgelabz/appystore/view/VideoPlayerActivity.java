@@ -16,7 +16,7 @@ import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.adapters.VideoviewRecyclerAdapter;
 import com.bridgelabz.appystore.controller.EndlessRecyclerOnScrollListener;
 import com.bridgelabz.appystore.interfaces.ClickListener;
-import com.bridgelabz.appystore.interfaces.FetchContentLIst;
+import com.bridgelabz.appystore.interfaces.FetchContentList;
 import com.bridgelabz.appystore.model.Historymodel;
 import com.bridgelabz.appystore.utility.DataBaseHandler;
 import com.bridgelabz.appystore.utility.RecyclerTouchListener;
@@ -50,8 +50,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
         Intent mintent = getIntent();
         // getting the String from intent
         url = mintent.getExtras().getString("videourl");
-        cid = mintent.getExtras().getString("cid");
-        pid = mintent.getExtras().getString("pid");
+        cid = mintent.getExtras().getString("mCid");
+        pid = mintent.getExtras().getString("mPid");
 
 
         mVidoesdisplayrecyclerview = (RecyclerView) findViewById(R.id.recyclerviewofvideos);
@@ -62,26 +62,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
         mLocalDb = new DataBaseHandler(VideoPlayerActivity.this);
 
         playvideo(url);
-
-     /*   // Parsing the uri
-            Uri uri = Uri.parse(url);
-            // Initilizing the videoview
-            // Settring the url
-            video.setVideoURI(uri);
-
-            //Mediacontrooler for the controolong the ideo
-            MediaController mediaController = new MediaController(this);
-
-            mediaController.setAnchorView(video);
-            video.setMediaController(mediaController);
-            //Starting the video
-            video.start();
-*/
-
-
-        viewmodel.getContentListViewmodeldata(pid, cid, moffset, new FetchContentLIst() {
+        viewmodel.getContentListViewmodeldata(pid, cid, moffset, new FetchContentList() {
             @Override
-            public void getcontentviewdata(ArrayList<ContentListViewmodel> viewmodelArrayList) {
+            public void receivedContentViewData(ArrayList<ContentListViewmodel> viewmodelArrayList) {
 
                 mListofContent = viewmodelArrayList;
                 recyclerAdapter = new VideoviewRecyclerAdapter(getBaseContext(), mListofContent);
@@ -95,9 +78,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
             @Override
             public void onLoadMore(int current_page) {
                 moffset = moffset + 5;
-                viewmodel.getContentListViewmodeldata(pid, cid, moffset, new FetchContentLIst() {
+                viewmodel.getContentListViewmodeldata(pid, cid, moffset, new FetchContentList() {
                     @Override
-                    public void getcontentviewdata(ArrayList<ContentListViewmodel> viewmodelArrayList) {
+                    public void receivedContentViewData(ArrayList<ContentListViewmodel> viewmodelArrayList) {
 
                         ArrayList<ContentListViewmodel> model = new ArrayList<>();
                         model = viewmodelArrayList;
@@ -136,8 +119,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent contentListActivity = new Intent(VideoPlayerActivity.this, ContentListActivity.class);
-                contentListActivity.putExtra("pid", pid);
-                contentListActivity.putExtra("cid", cid);
+                contentListActivity.putExtra("mPid", pid);
+                contentListActivity.putExtra("mCid", cid);
                 startActivity(contentListActivity);
             }
         });

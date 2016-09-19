@@ -3,19 +3,16 @@ package com.bridgelabz.appystore.controller;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
-import com.bridgelabz.appystore.interfaces.Asyntask;
-import com.bridgelabz.appystore.interfaces.Dataready;
+import com.bridgelabz.appystore.interfaces.CategoryAsyntask;
+import com.bridgelabz.appystore.interfaces.CategoryDataDownloadCompleted;
 import com.bridgelabz.appystore.model.Categorymodel;
-import com.bridgelabz.appystore.model.ContentListmodel;
 import com.bridgelabz.appystore.viewmodel.CategoryViewmodel;
-import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by bridgeit007 on 19/8/16.
@@ -28,11 +25,10 @@ public class CategoryController {
 
 
     // Initilizing the arraylist this list holds the category model data
-   public  final ArrayList<Categorymodel> mListofCategory = new ArrayList<>();
-    ArrayList<ContentListmodel> mContentlist = new ArrayList<>();
+    ArrayList<Categorymodel> mListofCategory = new ArrayList<>();
+    ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
 
-
-    public void loaddataFromserver(final Asyntask asyntask) {
+    public void loadDataFromServer(final CategoryAsyntask categoryAsyntask) {
         //rest url getting the data from url
         String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getCategoryList&content_type=videos&limit_start=0&age=1.5&incl_age=5";
 
@@ -40,8 +36,8 @@ public class CategoryController {
         RestService obj = new RestService() {
 
             @Override
-            protected void onPostExecute(ArrayList arrayList) {
-                asyntask.getdatafromserver(arrayList);
+            protected void onPostExecute(ArrayList<Categorymodel> arrayList) {
+                categoryAsyntask.loadedCategoryDataFromServer(arrayList);
             }
         };
 
@@ -52,34 +48,31 @@ public class CategoryController {
 
 
     // function for Populate viewmodel
-    public ArrayList<CategoryViewmodel> populateViewmodel(final Dataready dataready) {
+    public void populateViewmodel(final CategoryDataDownloadCompleted dataready) {
 
         // calling the rest call
-        loaddataFromserver(new Asyntask() {
+        loadDataFromServer(new CategoryAsyntask() {
             @Override
-            public void getdatafromserver(ArrayList<Categorymodel> categorylist) {
+            public void loadedCategoryDataFromServer(ArrayList<Categorymodel> categorylist) {
 
 
-                ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
                 for (int i = 0; i < categorylist.size(); i++) {
                     Categorymodel model = categorylist.get(i);
                     String title = model.getCategory_name();
-                   Bitmap image = model.getImage();
-                    String pid =model.getParent_category_id();
+                    String pid = model.getParent_category_id();
                     String cid = model.getCategory_id();
-                    String url =model.getImage_path();
-                    viewmodellist.add(new CategoryViewmodel(title, pid,cid,image));
+                    String url = model.getImage_path();
+                    viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
                 }
-                dataready.getviewmodeldata(viewmodellist);
+                dataready.receivedCategoryViewModelData(viewmodellist);
             }
 
         });
-        return null;
     }
 
 
     // This class used for do the backround process
-    class RestService extends AsyncTask<String, String, ArrayList> {
+    class RestService extends AsyncTask<String, String, ArrayList<Categorymodel>> {
         @Override
         protected ArrayList doInBackground(String... strings) {
 
@@ -91,7 +84,7 @@ public class CategoryController {
             Bitmap image;
 
             // caliing the function it return the datafetched from url as String format
-            String data = Utility.readDataFromServer(strings[0]);
+            String data = HttpManager.readDataFromServer(strings[0]);
             try {
 
                 // crearing the json object of url data
@@ -110,23 +103,15 @@ public class CategoryController {
                     //JSONArray contentJson = arrayobject.getJSONArray("image_path");
                     JSONObject urlobject = arrayobject.getJSONObject("image_path");
                     String url = urlobject.getString("50x50");
-                   image = Utility.imageDownload(url);
-                    mListofCategory.add(new Categorymodel(catogory_name,category_id,parent_category_id,parent_category_name,url,image));
+                    //  image = HttpManager.imageDownload(url);
+                    mListofCategory.add(new Categorymodel(catogory_name, category_id, parent_category_id, parent_category_name, url));
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             return mListofCategory;
-
         }
     }
 
-
-
-
-
 }
-
-

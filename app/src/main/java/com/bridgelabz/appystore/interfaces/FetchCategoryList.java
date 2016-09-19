@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 
 public interface FetchCategoryList {
-     void getCategoryViewData(ArrayList<CategoryViewmodel> viewmodelArrayList);
+     void receivedCategoryViewData(ArrayList<CategoryViewmodel> viewmodelArrayList);
 }

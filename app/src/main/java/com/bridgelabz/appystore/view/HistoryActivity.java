@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bridgelabz.appystore.R;
-import com.bridgelabz.appystore.adapters.HistoryREcyclerAdapter;
+import com.bridgelabz.appystore.adapters.HistoryRecyclerAdapter;
 import com.bridgelabz.appystore.interfaces.ClickListener;
 import com.bridgelabz.appystore.model.Historymodel;
 import com.bridgelabz.appystore.utility.DataBaseHandler;
@@ -34,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
         mRecyclerview.setLayoutManager(linearLayoutManager);
 
         listofStoredata=mLocalDb.getAllStoredData();
-        HistoryREcyclerAdapter adapter = new HistoryREcyclerAdapter(HistoryActivity.this,listofStoredata);
+        HistoryRecyclerAdapter adapter = new HistoryRecyclerAdapter(HistoryActivity.this,listofStoredata);
         mRecyclerview.setAdapter(adapter);
 
         mRecyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerview, new ClickListener() {
@@ -44,7 +44,6 @@ public class HistoryActivity extends AppCompatActivity {
                 Intent videoview = new Intent(HistoryActivity.this,SearchItemVideoPlayer.class);
                 videoview.putExtra("videourl",model.getVideourl());
                 startActivity(videoview);
-
             }
 
             @Override

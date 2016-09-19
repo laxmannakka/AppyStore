@@ -9,6 +9,5 @@ import java.util.ArrayList;
  */
 
 public interface ContentListDataDownloadCompleted {
-    public void getcontentlistviewmodeldata(ArrayList<ContentListViewmodel> data);
-
+     void receivedContentListViewModelData(ArrayList<ContentListViewmodel> data);
 }

@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bridgelabz.appystore.view.MainActivity"
+    tools:context="com.bridgelabz.appystore.view.AppyStoreActivity"
     android:orientation="horizontal"
     android:background="@drawable/bg">
     <LinearLayout
@@ -22,7 +22,7 @@
             android:id="@+id/textview"
             android:textColor="#000000"
             android:textAlignment="center"
-            android:text="please Enter your registerd mobile number"
+            android:text="Please enter your registerd mobile number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30dp"
@@ -39,11 +39,10 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:minLines="3"
-
             android:background="@drawable/rounded_edittext"/>
             <Button
                 android:layout_marginTop="20dp"
-                android:id="@+id/button"
+                android:id="@+id/loginbutton"
                 android:text="login"
 
                 android:layout_gravity="center"
@@ -51,8 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textview2"
-            android:layout_marginTop="25dp"
+            android:id="@+id/logintextview"
+            android:layout_marginTop="10dp"
             android:text="Continue without login"
             android:layout_gravity="center"
             android:layout_width="wrap_content"

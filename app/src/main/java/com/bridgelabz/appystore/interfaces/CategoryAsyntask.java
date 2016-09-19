@@ -10,5 +10,5 @@ import java.util.ArrayList;
  */
 
 public interface CategoryAsyntask {
-      public void getCategoryDataFromServer(ArrayList<Categorymodel> model);
+       void loadedCategoryDataFromServer(ArrayList<Categorymodel> model);
 }

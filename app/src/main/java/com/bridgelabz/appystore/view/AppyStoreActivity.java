@@ -9,31 +9,38 @@ import android.widget.TextView;
 
 import com.bridgelabz.appystore.R;
 
+
+/**
+ * <Purpose>
+ *
+ *
+ * */
+
 public class AppyStoreActivity extends AppCompatActivity {
 
     //Button for login
-    Button mlogin;
+    Button mLogin;
     //display the text
-    TextView mtextview;
+    TextView mTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mlogin= (Button) findViewById(R.id.button);
-        mtextview = (TextView) findViewById(R.id.textview2);
-        mlogin.setOnClickListener(new View.OnClickListener() {
+        mLogin= (Button) findViewById(R.id.loginbutton);
+        mTextView = (TextView) findViewById(R.id.logintextview);
+        mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent content = new Intent(AppyStoreActivity.this,CategoryView.class);
+                Intent content = new Intent(AppyStoreActivity.this,CategoryActivity.class);
                 startActivity(content);
 
             }
         });
-        mtextview.setOnClickListener(new View.OnClickListener() {
+        mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent content = new Intent(AppyStoreActivity.this,CategoryView.class);
+                Intent content = new Intent(AppyStoreActivity.this,CategoryActivity.class);
                 startActivity(content);
 
             }

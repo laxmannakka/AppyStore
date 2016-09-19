@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 
 public interface CategoryDataDownloadCompleted {
-    public void getviewmodeldata(ArrayList<CategoryViewmodel> data);
+    void receivedCategoryViewModelData(ArrayList<CategoryViewmodel> data);
 }

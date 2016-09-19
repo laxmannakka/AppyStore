@@ -1,10 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_search"
     android:layout_width="match_parent"
+    android:background="@drawable/bg"
     android:layout_height="match_parent"
     tools:context="com.bridgelabz.appystore.view.SearchActivity">
+<!--<LinearLayout
+    android:weightSum="10"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_weight="2"
+        android:src="@drawable/backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+    <EditText
+        android:id="@+id/serchedittext"
+        android:layout_width="488dp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_weight="2"
+        android:id="@+id/serchicon"
+        android:src="@drawable/search"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>-->
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/backbutton"
+            android:src="@drawable/backbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/backbutton"
+            android:id="@+id/serchedittext"
+            android:layout_width="488dp"
+            android:gravity="center"
+            android:background="@drawable/rounded_edittext"
+            android:layout_height="30dp" />
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/serchedittext"
+            android:id="@+id/serchicon"
+            android:src="@drawable/search"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+    </RelativeLayout>
+    <TextView
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="popular serches"
+        android:id="@+id/textshow"
+        android:textStyle="italic"
+        android:layout_below="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:weightSum="10"
+        android:id="@+id/linearlayout"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textshow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1.5"
+            android:background="@drawable/rounded_edittext"
+            android:layout_width="0dp"
+            android:textStyle="italic"
+            android:text="Rhymes"
+            android:id="@+id/rhymes"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+        <Button
+            android:layout_weight="1.5"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:text="Letters"
+            android:id="@+id/letters"
+            android:textStyle="italic"
+
+            android:layout_width="0dp"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+        <Button
+            android:layout_weight="1.5"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/counting"
+            android:background="@drawable/rounded_edittext"
+            android:textStyle="italic"
+
+            android:text="Counting"
+            android:layout_width="0dp"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+        <Button
+            android:layout_weight="1.5"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:textStyle="italic"
+            android:text="Drawing"
+            android:id="@+id/drawing"
+            android:layout_width="0dp"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+        <Button
+            android:layout_weight="1.5"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:text="Numbers"
+            android:id="@+id/numbers"
+            android:layout_width="0dp"
+            android:textStyle="italic"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+
+        <Button
+            android:layout_weight="1.5"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/rounded_edittext"
+            android:text="Counting"
+
+            android:layout_width="0dp"
+            android:textAllCaps="false"
+            android:textStyle="italic"
+            android:layout_height="40dp"
+            android:id="@+id/counting2" />
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearlayout">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

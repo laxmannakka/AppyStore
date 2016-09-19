@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.AppyStoreActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,16 +23,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.CategoryView"
+            android:name=".view.CategoryActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".view.ContentListView"
+            android:name=".view.ContentListActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".view.VideoPlayer"
-            android:screenOrientation="landscape"
-            ></activity>
+        <activity
+            android:name=".view.VideoPlayerActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".view.SearchActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".view.HistoryActivity"
+            android:screenOrientation="landscape"/>
+
+        <activity android:name=".view.SearchItemVideoPlayer"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

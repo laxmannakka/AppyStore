@@ -9,6 +9,6 @@ import java.util.ArrayList;
  */
 
 public interface SearchDataAsyntask {
-    void getdatafromserver(ArrayList<SearchDatamodel> searchmodel);
+    void loadedSearchDataFromServer(ArrayList<SearchDatamodel> searchmodel);
 
 }

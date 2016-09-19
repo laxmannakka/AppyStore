@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 
 public interface FetchContentList {
-     void getcontentviewdata(ArrayList<ContentListViewmodel> viewmodelArrayList);
+     void receivedContentViewData(ArrayList<ContentListViewmodel> viewmodelArrayList);
 }

@@ -6,8 +6,8 @@ import android.graphics.BitmapFactory;
 
 import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.controller.CategoryController;
-import com.bridgelabz.appystore.interfaces.Dataready;
-import com.bridgelabz.appystore.interfaces.FetchView;
+import com.bridgelabz.appystore.interfaces.CategoryDataDownloadCompleted;
+import com.bridgelabz.appystore.interfaces.FetchCategoryList;
 
 import java.util.ArrayList;
 
@@ -107,28 +107,6 @@ public class CategoryViewmodel  {
     }
 
 
-
-    public ArrayList<CategoryViewmodel> populateDummydata(Context mcontext) {
-
-        ArrayList<CategoryViewmodel> dummlist = new ArrayList<>();
-        int iconC[] = { R.drawable.ic_launcher};
-        String titleC[] = {"ABCD", "XYZ", "PQRS"};
-        Bitmap icon = BitmapFactory.decodeResource(mcontext.getResources(), iconC[0]);
-
-        for (int i = 0; i <10; i++) {
-            CategoryViewmodel currentC = new CategoryViewmodel();
-            currentC.image = icon;
-            currentC.title= titleC[2];
-            dummlist.add(currentC);
-        }
-
-        return dummlist;
-    }
-
-
-
-
-
     /**
      * this function get the viewmodel data
      * here performing the call back mechanism get the data from controller
@@ -136,14 +114,14 @@ public class CategoryViewmodel  {
      *
      * @param fetchView*/
 
-    public void getViewModelData(final FetchView fetchView) {
+    public void getCategoryViewModelData(final FetchCategoryList fetchView) {
 
-         categoryController.populateViewmodel(new Dataready() {
+         categoryController.populateViewmodel(new CategoryDataDownloadCompleted() {
             // overide method will execute the when the responce come from the populatemodel function
             @Override
-            public void getviewmodeldata(ArrayList<CategoryViewmodel> data) {
+            public void receivedCategoryViewModelData(ArrayList<CategoryViewmodel> data) {
 
-                fetchView.getviewdata(data);
+                fetchView.receivedCategoryViewData(data);
             }
         });
 
