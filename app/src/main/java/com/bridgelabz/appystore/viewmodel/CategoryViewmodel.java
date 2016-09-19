@@ -9,7 +9,6 @@ import com.bridgelabz.appystore.controller.CategoryController;
 import com.bridgelabz.appystore.interfaces.Dataready;
 import com.bridgelabz.appystore.interfaces.FetchView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  * This class shows the Category model
  */
 
-public class CategoryViewmodel implements Serializable {
+public class CategoryViewmodel  {
 
 
     // this variable  holds the title
@@ -43,18 +42,22 @@ public class CategoryViewmodel implements Serializable {
         this.title = title;
         this.image = image;
     }
+    public CategoryViewmodel(String url){
+        this.url=url;
+    }
 
     /**
      * this category maodl constructer
      * it takes the arguments title,image,pid ,cid url
      **/
-    public CategoryViewmodel(String title, String pid, String cid, Bitmap image) {
-        this.title = title;
-        this.image = image;
-        this.pid = pid;
-        this.cid = cid;
-    }
 
+
+    public CategoryViewmodel(String title,String pid,String cid,String url){
+        this.title=title;
+        this.pid=pid;
+        this.cid=cid;
+        this.url=url;
+    }
     // Empty constructor of this class
     public CategoryViewmodel() {
 
@@ -108,11 +111,11 @@ public class CategoryViewmodel implements Serializable {
     public ArrayList<CategoryViewmodel> populateDummydata(Context mcontext) {
 
         ArrayList<CategoryViewmodel> dummlist = new ArrayList<>();
-        int iconC[] = {R.drawable.ic_launcher, R.drawable.ic_launcher1, R.drawable.
-                ic_launcher};
+        int iconC[] = { R.drawable.ic_launcher};
         String titleC[] = {"ABCD", "XYZ", "PQRS"};
+        Bitmap icon = BitmapFactory.decodeResource(mcontext.getResources(), iconC[0]);
+
         for (int i = 0; i <10; i++) {
-            Bitmap icon = BitmapFactory.decodeResource(mcontext.getResources(), iconC[2]);
             CategoryViewmodel currentC = new CategoryViewmodel();
             currentC.image = icon;
             currentC.title= titleC[2];
@@ -130,21 +133,20 @@ public class CategoryViewmodel implements Serializable {
      * this function get the viewmodel data
      * here performing the call back mechanism get the data from controller
      * and return ths list which we are getting
-     **/
+     *
+     * @param fetchView*/
 
-    public ArrayList<CategoryViewmodel> getViewmodeldata(final FetchView fetchView) {
+    public void getViewModelData(final FetchView fetchView) {
 
-        final ArrayList<CategoryViewmodel> viewmodel = categoryController.populateViewmodel(new Dataready() {
+         categoryController.populateViewmodel(new Dataready() {
             // overide method will execute the when the responce come from the populatemodel function
             @Override
             public void getviewmodeldata(ArrayList<CategoryViewmodel> data) {
 
-                viewmodlelist = data;
-                fetchView.getviewdata(viewmodlelist);
+                fetchView.getviewdata(data);
             }
         });
 
-        return viewmodlelist; // returning the arraylist of data
 
     }
 

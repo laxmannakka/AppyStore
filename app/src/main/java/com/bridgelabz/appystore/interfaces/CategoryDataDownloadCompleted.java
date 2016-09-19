@@ -8,6 +8,6 @@ import java.util.ArrayList;
  * Created by bridgeit007 on 24/8/16.
  */
 
-public interface Dataready {
+public interface CategoryDataDownloadCompleted {
     public void getviewmodeldata(ArrayList<CategoryViewmodel> data);
 }

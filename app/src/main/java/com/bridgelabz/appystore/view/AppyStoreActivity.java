@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bridgelabz.appystore.R;
 
-public class MainActivity extends AppCompatActivity {
+public class AppyStoreActivity extends AppCompatActivity {
 
     //Button for login
     Button mlogin;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         mlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent content = new Intent(MainActivity.this,CategoryView.class);
+                Intent content = new Intent(AppyStoreActivity.this,CategoryView.class);
                 startActivity(content);
 
             }
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mtextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent content = new Intent(MainActivity.this,CategoryView.class);
+                Intent content = new Intent(AppyStoreActivity.this,CategoryView.class);
                 startActivity(content);
 
             }

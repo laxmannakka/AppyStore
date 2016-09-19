@@ -10,6 +10,6 @@ import java.util.ArrayList;
  * Created by bridgeit007 on 29/8/16.
  */
 
-public interface Backgroundpross {
-    public void getContentlsitdatafromserver(ArrayList<ContentListmodel> data);
+public interface ContentListAsynTask {
+     void getContentListDataFromServer(ArrayList<ContentListmodel> data);
 }

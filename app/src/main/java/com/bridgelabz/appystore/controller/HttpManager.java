@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by bridgeit007 on 23/8/16.
  */
 
-public class Utility {
+public class HttpManager {
 
 
     // Declaring the Headers Which we  need
