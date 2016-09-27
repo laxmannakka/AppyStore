@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class CategoryViewmodel  {
 
 
+
     // this variable  holds the title
     String title;
     // this varible holds the image
@@ -32,10 +33,15 @@ public class CategoryViewmodel  {
     String cid;
     // this is for url
     String url;
+    Context mContext;
+    CategoryController categoryController;
+
+    public CategoryViewmodel() {
+    }
+
     //Arraylist of Catogory model it holds the viewmodle list
     ArrayList<CategoryViewmodel> viewmodlelist = new ArrayList<>();
     // Creating the object of Categorycontroller
-    CategoryController categoryController = new CategoryController();
 
     //creating the constructor taking arguments title,bitmap
     public CategoryViewmodel(String title, Bitmap image) {
@@ -45,6 +51,8 @@ public class CategoryViewmodel  {
     public CategoryViewmodel(String url){
         this.url=url;
     }
+
+
 
     /**
      * this category maodl constructer
@@ -59,9 +67,12 @@ public class CategoryViewmodel  {
         this.url=url;
     }
     // Empty constructor of this class
-    public CategoryViewmodel() {
+    public CategoryViewmodel( Context context) {
+        this.mContext= context;
+         categoryController   = new CategoryController(mContext);
 
     }
+
 
     /**
      * getter and setter for all varibles

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="350dp"
+    android:background="@drawable/diolougebox_bg"
+    android:layout_height="250dp">
+
+    <ImageView
+        android:id="@+id/profilePic"
+        android:src="@drawable/close"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="45dp"
+        android:layout_height="45dp" />
+
+    <!--<LinearLayout
+        android:layout_marginTop="20dp"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/gallary"
+            android:src="@drawable/ic_photo_library_black_48dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="70dp" />
+        <ImageView
+            android:id="@+id/camera"
+            android:src="@drawable/ic_photo_camera_black_48dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="70dp" />
+    </LinearLayout>-->
+
+   <TextView
+       android:id="@+id/textview"
+       android:layout_centerVertical="true"
+       android:textAppearance="?android:textAppearanceLarge"
+       android:text="Oops not yet Developed"
+       android:layout_gravity="center"
+       android:gravity="center"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" />
+
+</RelativeLayout>

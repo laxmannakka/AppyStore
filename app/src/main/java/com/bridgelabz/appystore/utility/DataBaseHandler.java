@@ -32,9 +32,9 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + TITLE + " TEXT not null," + KEY_IMAGE_URL + "  PRIMARY KEY,"
+        String historytable= "CREATE TABLE " + TABLE_NAME + "(" + TITLE + " TEXT not null," + KEY_IMAGE_URL + "  PRIMARY KEY,"
                 + KEY_VIDEO_URL + " TEXT not null)";
-        sqLiteDatabase.execSQL(CREATE_CONTACTS_TABLE);
+        sqLiteDatabase.execSQL(historytable);
 
 
     }
@@ -45,8 +45,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         // Create tables again
         onCreate(sqLiteDatabase);
-
-
     }
   public  void addStoreDataToDataBase(Historymodel model)
     {
@@ -54,8 +52,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        values.put(TITLE, model.getTitle()); // Contact Name
-        values.put(KEY_IMAGE_URL, model.getImageurl()); // Contact Phone Number
+        values.put(TITLE, model.getTitle());
+        values.put(KEY_IMAGE_URL, model.getImageurl());
         values.put(KEY_VIDEO_URL,model.getVideourl());
         // Inserting Row
         db.insert(TABLE_NAME,null, values);
@@ -75,7 +73,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Historymodel model = new Historymodel();
-
 
                 model.setTitle(cursor.getString(0));
                 model.setImageurl(cursor.getString(1));

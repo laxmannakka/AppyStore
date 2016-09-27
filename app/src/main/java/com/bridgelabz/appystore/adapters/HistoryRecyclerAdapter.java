@@ -42,7 +42,7 @@ public class HistoryRecyclerAdapter extends  RecyclerView.Adapter<HistoryRecycle
     public void onBindViewHolder(HistoryRecyclerAdapter.MyViewHolder holder, int position) {
         Historymodel model = mData.get(position);
         holder.textview.setText(model.getTitle());
-        Glide.with(mContext).load(model.getImageurl()).diskCacheStrategy( DiskCacheStrategy.SOURCE ).into(holder.imageview);
+        Glide.with(mContext).load(model.getImageurl()).diskCacheStrategy(DiskCacheStrategy.SOURCE ).into(holder.imageview);
 
     }
 

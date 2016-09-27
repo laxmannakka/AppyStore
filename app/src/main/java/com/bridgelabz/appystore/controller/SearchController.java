@@ -49,7 +49,7 @@ public class SearchController {
                     mListofSearchviewMoeldata.add(new SearchViewmodel(title, imageurl, dnldUrl));
                 }
 
-                searchDataReady.receivedSerachviewModelData(mListofSearchviewMoeldata);
+                searchDataReady.receivedSerachViewModelData(mListofSearchviewMoeldata);
 
             }
         });

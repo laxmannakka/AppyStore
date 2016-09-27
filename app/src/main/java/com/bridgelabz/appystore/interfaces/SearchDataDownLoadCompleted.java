@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 
 public interface SearchDataDownLoadCompleted {
-     void receivedSerachviewModelData(ArrayList<SearchViewmodel> model);
+     void receivedSerachViewModelData(ArrayList<SearchViewmodel> model);
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.adapters.HistoryRecyclerAdapter;
@@ -20,6 +21,7 @@ import java.util.List;
 public class HistoryActivity extends AppCompatActivity {
     DataBaseHandler mLocalDb;
     RecyclerView mRecyclerview;
+    ImageView mBackbutton;
     List<Historymodel> listofStoredata= new ArrayList<Historymodel>();
 
 
@@ -29,6 +31,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history_view);
         mLocalDb= new DataBaseHandler(HistoryActivity.this);
         mRecyclerview = (RecyclerView) findViewById(R.id.historyrecyclerview);
+        mBackbutton= (ImageView) findViewById(R.id.imagebackck);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
         mRecyclerview.setLayoutManager(linearLayoutManager);
@@ -51,5 +54,12 @@ public class HistoryActivity extends AppCompatActivity {
 
             }
         }));
+        mBackbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HistoryActivity.this,CategoryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

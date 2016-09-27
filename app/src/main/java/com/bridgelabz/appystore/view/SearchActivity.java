@@ -38,6 +38,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     Button mButton5;
     Button mButton6;
     ImageView mSearchimageview;
+    ImageView mBack;
     SearchViewmodel searchViewmodelobject;
     TextView mTextview;
     LinearLayout mLinearlayout;
@@ -159,6 +160,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
        }
    }));
+
+        mBackButtonImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent home = new Intent(SearchActivity.this,CategoryActivity.class);
+                startActivity(home);
+            }
+        });
 
     }
 }

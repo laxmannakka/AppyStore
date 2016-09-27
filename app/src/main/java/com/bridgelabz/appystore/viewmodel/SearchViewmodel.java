@@ -66,7 +66,7 @@ public class SearchViewmodel {
   public void  getSerachResultFromViewmodel(String text, final FetchSearchview fetchSearchview){
       searchControllerObject.populateSearcViewModelData(text, new SearchDataDownLoadCompleted() {
           @Override
-          public void receivedSerachviewModelData(ArrayList<SearchViewmodel> model) {
+          public void receivedSerachViewModelData(ArrayList<SearchViewmodel> model) {
               fetchSearchview.receivedSearchviewdata(model);
 
           }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--<data>
+
+        <variable
+            name="test"
+            type="Byte" />
+
+    </data>-->
+
+   <!-- <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="192dp">
+
+        <TextView
+            android:id="@+id/c_item_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#f00" />
+
+        <TextView
+            android:id="@+id/c_item_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#f00" />
+
+     &lt;!&ndash;   <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:background="#0f0" />&ndash;&gt;
+        <ImageView
+            android:id="@+id/imageview"
+            android:src="@drawable/bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>-->
+
+
+    <RelativeLayout
+        android:background="@drawable/relativebg"
+        android:layout_width="200dp"
+        android:id="@+id/relativelayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/carosalbg"
+            android:layout_margin="15dp"
+            android:src="@drawable/bg"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="25dp">
+        </ImageView>
+
+
+        <TextView
+            android:id="@+id/view"
+            android:layout_alignRight="@+id/carosalbg"
+            android:layout_alignBottom="@+id/carosalbg"
+            android:layout_width="40dp"
+
+            android:background="@drawable/backroundview"
+            android:layout_height="30dp"/>
+        <TextView
+            android:id="@+id/textview"
+            android:text="hello"
+            android:textColor="@color/colorAccent"
+            android:layout_above="@+id/icon"
+            android:layout_alignTop="@+id/icon"
+            android:layout_alignRight="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/icon"
+            android:src="@drawable/videioicon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignRight="@+id/carosalbg"
+            android:layout_alignBottom="@+id/carosalbg"
+            tools:layout_editor_absoluteY="237dp"
+            tools:layout_editor_absoluteX="327dp" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/titletextview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</layout>
+

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CarouselPreviewActivity">
+
+   <!-- <data>
+
+        <variable
+            name="test"
+            type="Byte" />
+    </data>-->
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+
+        <LinearLayout
+            android:id="@+id/activity_main"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg"
+            >
+
+            <LinearLayout
+                android:id="@+id/linearlayout"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:weightSum="10">
+                <ImageView
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:id="@+id/home"
+                    android:src="@drawable/image"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/song"
+                    android:src="@drawable/songicon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/videos"
+                    android:src="@drawable/videoicon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/history"
+                    android:layout_width="0dp"
+                    android:src="@drawable/history"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/categorysearch"
+                    android:src="@drawable/search"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/list_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:id="@+id/relativelayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/shopping"
+                    android:src="@drawable/buttonshop"
+                    android:layout_width="60dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" />
+                <ImageView
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="50dp"
+                    android:id="@+id/parentingpage"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/image"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+        <!--
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginTop="?attr/actionBarSize"
+               android:orientation="vertical">
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="250dp"
+                   android:paddingBottom="@dimen/activity_vertical_margin"
+                   android:paddingLeft="@dimen/activity_horizontal_margin"
+                   android:paddingRight="@dimen/activity_horizontal_margin"
+                   android:paddingTop="@dimen/activity_vertical_margin">
+
+                   <android.support.v7.widget.RecyclerView
+                       android:id="@+id/list_vertical"
+                       android:layout_width="match_parent"
+                       android:layout_height="250dp"
+                       android:layout_centerInParent="true" />
+
+
+               </RelativeLayout>-->
+
+        <!--    <RelativeLayout
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+-->
+       <!-- </LinearLayout>-->
+<!--
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_scroll"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@android:drawable/ic_dialog_email" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_change_data"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@android:drawable/ic_dialog_email" /-->>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

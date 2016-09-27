@@ -6,6 +6,33 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+    <style name="animationName" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/animation_on</item>
+        <item name="android:windowExitAnimation">@anim/animation_off</item>
+    </style>
+    <style name="blinkanimatio" parent="android:Animation">
+        <item name="android:windowAnimationStyle">@anim/blink</item>
+    </style>
+    <style name="bounce" parent="android:Animation">
+        <item name="android:windowAnimationStyle">@anim/bounce</item>
     </style>
 
+    <style name="zoomin" parent="android:Animation">
+        <item name="android:windowAnimationStyle">@anim/zoom_in</item>
+    </style>
+    <style name="slideup" parent="android:Animation">
+        <item name="android:windowAnimationStyle">@anim/together</item>
+    </style>
+
+
+    <style name="PauseDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/PauseDialogAnimation</item>
+    </style>
+
+    <style name="PauseDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/bounce</item>
+        <!--<item name="android:windowExitAnimation">@anim/fadeout</item>-->
+    </style>
 </resources>

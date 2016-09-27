@@ -16,6 +16,7 @@ import com.bridgelabz.appystore.interfaces.ClickListener;
 import com.bridgelabz.appystore.interfaces.FetchContentList;
 import com.bridgelabz.appystore.model.Historymodel;
 import com.bridgelabz.appystore.utility.DataBaseHandler;
+import com.bridgelabz.appystore.utility.DialogBox;
 import com.bridgelabz.appystore.utility.RecyclerTouchListener;
 import com.bridgelabz.appystore.viewmodel.ContentListViewmodel;
 
@@ -54,6 +55,10 @@ public class ContentListActivity extends AppCompatActivity {
     // for the history
     ImageView mHistory;
     ImageView mHome;
+    ImageView mSong;
+    ImageView mVideo;
+    ImageView mShopicon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,19 +75,20 @@ public class ContentListActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mHistory= (ImageView) findViewById(R.id.history);
         mHome = (ImageView) findViewById(R.id.home);
+        mSong = (ImageView) findViewById(R.id.songs);
+        mVideo =(ImageView)findViewById(R.id.video);
+        mShopicon =(ImageView)findViewById(R.id.buttonshop);
         // Creation of object of DataBaseHandler class passing argument context of this class
         mLocalDb = new DataBaseHandler(ContentListActivity.this);
 
         // Creating the object of LinearLayoutManager class
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-
         // Setting layout for recyclerview
         mRecyclerView.setLayoutManager(linearLayoutManager);
-
-
         // Creating the object of Contentlist
         final ContentListViewmodel viewmodel = new ContentListViewmodel();
 
+        // calling the function here
         viewmodel.getContentListViewmodeldata(mPid, mCid, mOffset, new FetchContentList() {
             @Override
             public void receivedContentViewData(ArrayList<ContentListViewmodel> viewmodelArrayList) {
@@ -155,12 +161,29 @@ public class ContentListActivity extends AppCompatActivity {
         mHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-            Intent categorylistview = new Intent(ContentListActivity.this,CategoryActivity.class);
+                Intent categorylistview = new Intent(ContentListActivity.this,CategoryActivity.class);
                 startActivity(categorylistview);
             }
         });
 
+        mSong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogBox.showDialouge(ContentListActivity.this);
+            }
+        });
+        mVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogBox.showDialouge(ContentListActivity.this);
+            }
+        });
+        mShopicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogBox.showDialouge(ContentListActivity.this);
+            }
+        });
     }
 }
 

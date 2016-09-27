@@ -1,11 +1,18 @@
 package com.bridgelabz.appystore.controller;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.bridgelabz.appystore.R;
 import com.bridgelabz.appystore.interfaces.CategoryAsyntask;
 import com.bridgelabz.appystore.interfaces.CategoryDataDownloadCompleted;
 import com.bridgelabz.appystore.model.Categorymodel;
+import com.bridgelabz.appystore.utility.CategoryDataBaseHandler;
+import com.bridgelabz.appystore.utility.DataBaseHandler;
 import com.bridgelabz.appystore.viewmodel.CategoryViewmodel;
 
 import org.json.JSONArray;
@@ -23,15 +30,30 @@ import java.util.ArrayList;
 
 public class CategoryController {
 
+    Context mContext;
+    SharedPreferences sharedPreferences;
 
     // Initilizing the arraylist this list holds the category model data
     ArrayList<Categorymodel> mListofCategory = new ArrayList<>();
     ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
 
+    CategoryDataBaseHandler db;
+
+
+
+    public CategoryController(Context context){
+        this.mContext = context.getApplicationContext();
+        db= new CategoryDataBaseHandler(mContext);
+        String ll="";
+    }
+
+    public CategoryController() {
+    }
+
+
     public void loadDataFromServer(final CategoryAsyntask categoryAsyntask) {
         //rest url getting the data from url
-        String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getCategoryList&content_type=videos&limit_start=0&age=1.5&incl_age=5";
-
+        String url = mContext.getResources().getString(R.string.categoryvideoslink);
         // creating the object of Restservice class
         RestService obj = new RestService() {
 
@@ -46,28 +68,41 @@ public class CategoryController {
         obj.execute(url);
     }
 
-
-    // function for Populate viewmodel
+     // function for Populate viewmodel
     public void populateViewmodel(final CategoryDataDownloadCompleted dataready) {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor  editor= sharedPreferences.edit();
+        editor.putInt("key",0);
+        editor.commit();
 
-        // calling the rest call
-        loadDataFromServer(new CategoryAsyntask() {
-            @Override
-            public void loadedCategoryDataFromServer(ArrayList<Categorymodel> categorylist) {
-
-
-                for (int i = 0; i < categorylist.size(); i++) {
-                    Categorymodel model = categorylist.get(i);
-                    String title = model.getCategory_name();
-                    String pid = model.getParent_category_id();
-                    String cid = model.getCategory_id();
-                    String url = model.getImage_path();
-                    viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
+        int value = sharedPreferences.getInt("key",-1);
+        Toast.makeText(mContext.getApplicationContext(),"value is "+value,Toast.LENGTH_LONG).show();
+        if(value==0) {
+            Log.i("laxman","INside the if db handler ---------");
+            sharedPreferences.edit().putInt("key",5).commit();
+            // calling the rest call
+            loadDataFromServer(new CategoryAsyntask() {
+                @Override
+                public void loadedCategoryDataFromServer(ArrayList<Categorymodel> categorylist) {
+                    for (int i = 0; i < categorylist.size(); i++) {
+                        Categorymodel model = categorylist.get(i);
+                        String title = model.getCategory_name();
+                        String pid = model.getParent_category_id();
+                        String cid = model.getCategory_id();
+                        String url = model.getImage_path();
+                        viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
+                        db.addStoreDataToDataBase(new CategoryViewmodel(title, pid, cid, url));
+                    }
+                    dataready.receivedCategoryViewModelData(viewmodellist);
                 }
-                dataready.receivedCategoryViewModelData(viewmodellist);
-            }
-
-        });
+            });
+        }
+        else
+        {
+            CategoryDataBaseHandler db = new CategoryDataBaseHandler(mContext);
+            ArrayList<CategoryViewmodel> categorymodellist=db.getAllStoredData();
+            dataready.receivedCategoryViewModelData(categorymodellist);
+        }
     }
 
 
@@ -86,7 +121,6 @@ public class CategoryController {
             // caliing the function it return the datafetched from url as String format
             String data = HttpManager.readDataFromServer(strings[0]);
             try {
-
                 // crearing the json object of url data
                 JSONObject jsonobject = new JSONObject(data);
                 // creating the subjson array in jsonobject
@@ -113,5 +147,4 @@ public class CategoryController {
             return mListofCategory;
         }
     }
-
 }
