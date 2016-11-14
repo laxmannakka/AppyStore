@@ -25,7 +25,7 @@ public class CategoryViewmodel  {
 
     // this variable  holds the title
     String title;
-    // this varible holds the image
+    // this varible holds the homeicon
     Bitmap image;
     // this varible holds the parent category id
     String pid;
@@ -56,7 +56,7 @@ public class CategoryViewmodel  {
 
     /**
      * this category maodl constructer
-     * it takes the arguments title,image,pid ,cid url
+     * it takes the arguments title,homeicon,pid ,cid url
      **/
 
 

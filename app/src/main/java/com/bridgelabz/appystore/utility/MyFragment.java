@@ -3,7 +3,6 @@ package com.bridgelabz.appystore.utility;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bridgelabz.appystore.R;
-import com.bridgelabz.appystore.view.CategoryActivity;
+import com.bridgelabz.appystore.view.MainActivity;
 
 /**
  * Created by bridgeit007 on 27/9/16.
@@ -31,7 +30,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(view.getContext(), CategoryActivity.class);
+        Intent intent = new Intent(view.getContext(), MainActivity.class);
         startActivity(intent);
     }
 }

@@ -3,6 +3,8 @@ package com.bridgelabz.appystore.controller;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -32,19 +34,15 @@ public class CategoryController {
 
     Context mContext;
     SharedPreferences sharedPreferences;
-
     // Initilizing the arraylist this list holds the category model data
     ArrayList<Categorymodel> mListofCategory = new ArrayList<>();
     ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
+    CategoryDataBaseHandler db = new CategoryDataBaseHandler(mContext);
 
-    CategoryDataBaseHandler db;
-
-
-
-    public CategoryController(Context context){
+    public CategoryController(Context context) {
         this.mContext = context.getApplicationContext();
-        db= new CategoryDataBaseHandler(mContext);
-        String ll="";
+        db = new CategoryDataBaseHandler(mContext);
+        String ll = "";
     }
 
     public CategoryController() {
@@ -68,18 +66,12 @@ public class CategoryController {
         obj.execute(url);
     }
 
-     // function for Populate viewmodel
+    // function for Populate viewmodel
     public void populateViewmodel(final CategoryDataDownloadCompleted dataready) {
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences("MyData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor  editor= sharedPreferences.edit();
-        editor.putInt("key",0);
-        editor.commit();
 
-        int value = sharedPreferences.getInt("key",-1);
-        Toast.makeText(mContext.getApplicationContext(),"value is "+value,Toast.LENGTH_LONG).show();
-        if(value==0) {
-            Log.i("laxman","INside the if db handler ---------");
-            sharedPreferences.edit().putInt("key",5).commit();
+        viewmodellist = db.getAllStoredData();
+
+        if (viewmodellist.size() == 0) {
             // calling the rest call
             loadDataFromServer(new CategoryAsyntask() {
                 @Override
@@ -90,21 +82,47 @@ public class CategoryController {
                         String pid = model.getParent_category_id();
                         String cid = model.getCategory_id();
                         String url = model.getImage_path();
-                        viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
+                        //     viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
                         db.addStoreDataToDataBase(new CategoryViewmodel(title, pid, cid, url));
                     }
+                    viewmodellist = db.getAllStoredData();
                     dataready.receivedCategoryViewModelData(viewmodellist);
                 }
             });
+
+            return;
         }
-        else
-        {
-            CategoryDataBaseHandler db = new CategoryDataBaseHandler(mContext);
-            ArrayList<CategoryViewmodel> categorymodellist=db.getAllStoredData();
-            dataready.receivedCategoryViewModelData(categorymodellist);
+        dataready.receivedCategoryViewModelData(viewmodellist);
+
+        boolean b = isOnline(mContext);
+        if (b) {
+            loadDataFromServer(new CategoryAsyntask() {
+                @Override
+                public void loadedCategoryDataFromServer(ArrayList<Categorymodel> catogorymodel) {
+                    if (viewmodellist.size() == catogorymodel.size()) {
+                    } else {
+                        for (int i = 0; i < catogorymodel.size(); i++) {
+                            Categorymodel model = catogorymodel.get(i);
+                            String title = model.getCategory_name();
+                            String pid = model.getParent_category_id();
+                            String cid = model.getCategory_id();
+                            String url = model.getImage_path();
+                            //     viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
+                            db.addStoreDataToDataBase(new CategoryViewmodel(title, pid, cid, url));
+                            dataready.receivedCategoryViewModelData(db.getAllStoredData());
+                        }
+                    }
+                }
+            });
         }
     }
 
+    public boolean isOnline(Context mContext) {
+        ConnectivityManager cm =
+                (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
 
     // This class used for do the backround process
     class RestService extends AsyncTask<String, String, ArrayList<Categorymodel>> {
@@ -137,7 +155,7 @@ public class CategoryController {
                     //JSONArray contentJson = arrayobject.getJSONArray("image_path");
                     JSONObject urlobject = arrayobject.getJSONObject("image_path");
                     String url = urlobject.getString("50x50");
-                    //  image = HttpManager.imageDownload(url);
+                    //  homeicon = HttpManager.imageDownload(url);
                     mListofCategory.add(new Categorymodel(catogory_name, category_id, parent_category_id, parent_category_name, url));
                 }
 

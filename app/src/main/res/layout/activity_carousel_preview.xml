@@ -3,22 +3,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/transparent"
     tools:context=".CarouselPreviewActivity">
-
-   <!-- <data>
-
-        <variable
-            name="test"
-            type="Byte" />
-    </data>-->
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinatelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
-
-
         <LinearLayout
             android:id="@+id/activity_main"
             android:orientation="vertical"
@@ -27,18 +19,19 @@
             android:background="@drawable/bg"
             >
 
-            <LinearLayout
+           <!-- <LinearLayout
                 android:id="@+id/linearlayout"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:background="@android:color/transparent"
                 android:weightSum="10">
                 <ImageView
                     android:layout_marginLeft="8dp"
                     android:layout_width="0dp"
                     android:id="@+id/home"
-                    android:src="@drawable/image"
+                    android:src="@drawable/homeicon"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
                 <TextView
@@ -87,15 +80,17 @@
                     android:layout_weight="1" />
             </LinearLayout>
 
+-->
+
 
             <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:id="@+id/list_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"></android.support.v7.widget.RecyclerView>
-            <RelativeLayout
+          <!--  <RelativeLayout
                 android:id="@+id/relativelayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -112,9 +107,9 @@
                     android:id="@+id/parentingpage"
                     android:layout_marginRight="8dp"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/image"
+                    android:src="@drawable/homeicon"
                     android:layout_height="wrap_content"/>
-            </RelativeLayout>
+            </RelativeLayout>-->
         </LinearLayout>
 
 

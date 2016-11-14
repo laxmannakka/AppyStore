@@ -3,6 +3,8 @@
     <string name="song_icon_text"> Oops This  not at Released</string>
     <string name="video_icon_text">Oops Videos are not yet Ready</string>
     <string name="shopping_icon_text">this item is not yet ready</string>
+    <string name="string">Are You The Parent Press the given numbers</string>
+
     <string name="parenting_icon_text">Sorry Ooops this facility not as been added</string>
     <string name="categoryvideoslink"> http://beta.appystore.in/appy_app/appyApi_handler.php?method=getCategoryList&amp;content_type=videos&amp;limit_start=0&amp;age=1.5&amp;incl_age=5</string>
 </resources>

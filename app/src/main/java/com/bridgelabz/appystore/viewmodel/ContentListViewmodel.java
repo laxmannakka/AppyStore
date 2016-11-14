@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class ContentListViewmodel extends BaseObservable{
 
     String title; // for title of contentlist
-    Bitmap contentImage; // for image
+    Bitmap contentImage; // for homeicon
     String videourl; // video url
-    String imageurl; // image url
+    String imageurl; // homeicon url
 
   // Creating the object of controller
     ContentListController controller = new ContentListController();
@@ -31,9 +31,9 @@ public class ContentListViewmodel extends BaseObservable{
     ArrayList<ContentListViewmodel> mcontentviewmodelist = new ArrayList<>();
 
     // Constructor of this class
-    public ContentListViewmodel(String title,/* Bitmap image*/String imageurl, String url) {
+    public ContentListViewmodel(String title,/* Bitmap homeicon*/String imageurl, String url) {
         this.title = title;
-       /* this.contentImage = image;*/
+       /* this.contentImage = homeicon;*/
         this.imageurl=imageurl;
         this.videourl = url;
     }

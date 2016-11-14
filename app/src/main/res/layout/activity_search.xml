@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/bg"
     android:layout_height="match_parent"
-    tools:context="com.bridgelabz.appystore.view.SearchActivity">
+    tools:context="com.bridgelabz.appystore.view.SearchFragment">
 <!--<LinearLayout
     android:weightSum="10"
     android:layout_width="match_parent"
@@ -36,16 +36,17 @@
         <ImageView
             android:layout_marginTop="5dp"
             android:layout_alignParentLeft="true"
-            android:id="@+id/backbutton"
+            android:id="@+id/back"
             android:src="@drawable/backbutton"
             android:layout_width="wrap_content"
             android:layout_height="20dp" />
         <EditText
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/backbutton"
+            android:layout_toRightOf="@+id/back"
             android:id="@+id/serchedittext"
             android:layout_width="488dp"
             android:gravity="center"
+            android:textColor="#000000"
             android:background="@drawable/rounded_edittext"
             android:layout_height="30dp" />
         <ImageView
@@ -63,6 +64,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="popular serches"
+        android:textColor="#000000"
         android:id="@+id/textshow"
         android:textStyle="italic"
         android:layout_below="@+id/relativelayout"
@@ -83,6 +85,7 @@
             android:layout_width="0dp"
             android:textStyle="italic"
             android:text="Rhymes"
+            android:textColor="#000000"
             android:id="@+id/rhymes"
             android:textAllCaps="false"
             android:layout_height="40dp" />
@@ -93,6 +96,7 @@
             android:text="Letters"
             android:id="@+id/letters"
             android:textStyle="italic"
+            android:textColor="#000000"
 
             android:layout_width="0dp"
             android:textAllCaps="false"
@@ -103,6 +107,7 @@
             android:id="@+id/counting"
             android:background="@drawable/rounded_edittext"
             android:textStyle="italic"
+            android:textColor="#000000"
 
             android:text="Counting"
             android:layout_width="0dp"
@@ -115,6 +120,8 @@
             android:textStyle="italic"
             android:text="Drawing"
             android:id="@+id/drawing"
+            android:textColor="#000000"
+
             android:layout_width="0dp"
             android:textAllCaps="false"
             android:layout_height="40dp" />
@@ -123,6 +130,8 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/rounded_edittext"
             android:text="Numbers"
+            android:textColor="#000000"
+
             android:id="@+id/numbers"
             android:layout_width="0dp"
             android:textStyle="italic"
@@ -134,6 +143,7 @@
             android:layout_marginLeft="15dp"
             android:background="@drawable/rounded_edittext"
             android:text="Counting"
+            android:textColor="#000000"
 
             android:layout_width="0dp"
             android:textAllCaps="false"

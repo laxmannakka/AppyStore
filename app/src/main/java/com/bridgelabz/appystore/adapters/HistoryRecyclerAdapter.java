@@ -32,7 +32,7 @@ public class HistoryRecyclerAdapter extends  RecyclerView.Adapter<HistoryRecycle
 
     @Override
     public HistoryRecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.search_item, parent, false);
+        View view = inflater.inflate(R.layout.item1, parent, false);
         MyViewHolder myviewHolder = new MyViewHolder(view);
 
         return myviewHolder;
@@ -57,7 +57,7 @@ public class HistoryRecyclerAdapter extends  RecyclerView.Adapter<HistoryRecycle
         public MyViewHolder(View itemView) {
             super(itemView);
             imageview = (ImageView) itemView.findViewById(R.id.imageview);
-            textview =(TextView)itemView.findViewById(R.id.titlenamedisplay);
+            textview =(TextView)itemView.findViewById(R.id.titleview);
         }
     }
 }

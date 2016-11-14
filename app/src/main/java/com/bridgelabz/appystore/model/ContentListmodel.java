@@ -18,7 +18,7 @@ public class ContentListmodel {
         this.title = title;
         this.imageUrl = imageUrl;
         this.videoUrl = videoUrl;
-      //  this.image = image;
+      //  this.homeicon = homeicon;
         this.durationofvideo = durationofvideo;
     }
 

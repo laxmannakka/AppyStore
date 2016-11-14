@@ -25,21 +25,18 @@ import java.util.List;
             String parent_category_id;
             String parent_category_name;*/
 
-public class CategoryDataBaseHandler  extends SQLiteOpenHelper {
+public class CategoryDataBaseHandler extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME = "Categorydata";
-    // Table Name
-    public static String TABLE_NAME = "categorylist";
     //  contact names and columns
-    private static final String CATEGORY_NAME ="categoryname";
+    private static final String CATEGORY_NAME = "categoryname";
     private static final String CATEGORY_ID = "cid";
     private static final String PARENT_CATEGORY_NAME = "parentcategoryname";
     private static final String PARENT_CATEGORY_ID = "pid";
-    private static final String URL="imageurl";
-
-
+    private static final String URL = "imageurl";
+    public static String DATABASE_NAME = "Categorydata";
+    // Table Name
+    public static String TABLE_NAME = "categorylist";
     public static int DATABASE_NUMBER = 1;
-
 
 
     public CategoryDataBaseHandler(Context context) {
@@ -50,34 +47,31 @@ public class CategoryDataBaseHandler  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String categoryListTable= "CREATE TABLE " + TABLE_NAME + "(" + CATEGORY_NAME + " PRIMARY KEY," + CATEGORY_ID + "  TEXT not null,"+ PARENT_CATEGORY_ID + " TEXT not null,"
-                + URL+ " TEXT not null)";
+        String categoryListTable = "CREATE TABLE " + TABLE_NAME + "(" + CATEGORY_NAME + " PRIMARY KEY," + CATEGORY_ID + "  TEXT not null," + PARENT_CATEGORY_ID + " TEXT not null,"
+                + URL + " TEXT not null)";
         sqLiteDatabase.execSQL(categoryListTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
     }
 
-    public  void addStoreDataToDataBase(CategoryViewmodel model)
-    {
+    public void addStoreDataToDataBase(CategoryViewmodel model) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-
         values.put(CATEGORY_NAME, model.getTitle()); // Contact Name
         values.put(CATEGORY_ID, model.getCid()); // Contact Phone Number
-        values.put(PARENT_CATEGORY_ID,model.getPid());
-        values.put(URL,model.getUrl());
+        values.put(PARENT_CATEGORY_ID, model.getPid());
+        values.put(URL, model.getUrl());
         // Inserting Row
-        db.insert(TABLE_NAME,null, values);
+        db.insert(TABLE_NAME, null, values);
         db.close(); // Closing database connection
     }
 
-    public ArrayList<CategoryViewmodel > getAllStoredData() {
+    public ArrayList<CategoryViewmodel> getAllStoredData() {
 
-        ArrayList<CategoryViewmodel> viewModelList= new ArrayList<CategoryViewmodel>();
+        ArrayList<CategoryViewmodel> viewModelList = new ArrayList<CategoryViewmodel>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;
 
@@ -88,7 +82,7 @@ public class CategoryDataBaseHandler  extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-               CategoryViewmodel model = new CategoryViewmodel();
+                CategoryViewmodel model = new CategoryViewmodel();
 
                 model.setTitle(cursor.getString(0));
                 model.setCid(cursor.getString(1));

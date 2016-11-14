@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bridgelabz.appystore.R;
+import com.bridgelabz.appystore.utility.RoundedCornersTransformation;
 import com.bridgelabz.appystore.viewmodel.SearchViewmodel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -34,13 +35,10 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
         this.mContext = mContext;
         inflater= LayoutInflater.from(mContext);
     }
-
-
-
     @Override
     public SearchRecyclerAdapter.MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.search_item, parent, false);
+        View view = inflater.inflate(R.layout.item1, parent, false);
         MyviewHolder myviewHolder = new MyviewHolder(view);
         return myviewHolder;
     }
@@ -50,9 +48,12 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
 
         SearchViewmodel singlemodel = mData.get(position);
         holder.textview.setText(singlemodel.getTitle());
-        Glide.with(mContext).load(singlemodel.getUrlimage()).diskCacheStrategy( DiskCacheStrategy.SOURCE ).into(holder.imageview);
-
-
+        int sCorner = 25;
+        int sMargin = 4;
+        Glide.with(mContext)
+                .load(singlemodel.getUrlimage())
+                .bitmapTransform(new RoundedCornersTransformation(mContext,sCorner, sMargin))
+                .into(holder.imageview);
     }
 
     @Override
@@ -67,7 +68,7 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
         public MyviewHolder(View itemView) {
             super(itemView);
             imageview = (ImageView) itemView.findViewById(R.id.imageview);
-            textview =(TextView)itemView.findViewById(R.id.titlenamedisplay);
+            textview =(TextView)itemView.findViewById(R.id.titleview);
         }
     }
 }

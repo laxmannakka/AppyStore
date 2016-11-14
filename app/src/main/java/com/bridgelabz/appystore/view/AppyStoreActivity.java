@@ -2,7 +2,8 @@ package com.bridgelabz.appystore.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,8 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bridgelabz.appystore.R;
-import com.bridgelabz.appystore.controller.CategoryController;
-import com.bridgelabz.appystore.utility.BackgroundSoundService;
+import com.bridgelabz.appystore.utility.Background;
 
 
 /**
@@ -29,13 +29,16 @@ public class AppyStoreActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent svc=new Intent(AppyStoreActivity.this, Background.class);
+        startService(svc);
         setContentView(R.layout.activity_main);
         mLogin= (Button) findViewById(R.id.loginbutton);
         mTextView = (TextView) findViewById(R.id.logintextview);
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent content = new Intent(AppyStoreActivity.this,CategoryActivity.class);
+                Intent content = new Intent(AppyStoreActivity.this,MainActivity.class);
                 startActivity(content);
 
             }
@@ -43,13 +46,15 @@ public class AppyStoreActivity extends AppCompatActivity {
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent content = new Intent(AppyStoreActivity.this,CategoryActivity.class);
-                startActivity(content);
 
+                Intent content = new Intent(AppyStoreActivity.this,MainActivity.class);
+                startActivity(content);
             }
         });
-        Intent svc=new Intent(this, BackgroundSoundService.class);
-        startService(svc);
+
     }
 
+
 }
+
+

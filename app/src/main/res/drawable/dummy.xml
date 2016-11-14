@@ -1,0 +1,58 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:width="50dp"
+        android:height="50dp"
+        android:top="15dp"
+        android:start="18dp"
+        android:end="13dp"
+        android:bottom="15dp"
+        android:left="15dp">
+        <shape
+            android:shape="oval">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+    <item
+        android:gravity="center"
+        android:width="48dp"
+        android:height="47dp"
+        android:top="15dp"
+        android:start="20dp"
+        android:right="15dp"
+        android:scaleType="centerCrop"
+        android:bottom="14dp"
+        android:left="15dp">
+        <shape
+            android:shape="oval">
+            <solid android:color="#000000" />
+        </shape>
+    </item>
+    <item
+        android:gravity="center"
+        android:width="48dp"
+        android:height="46dp"
+        android:top="14dp"
+        android:right="15dp"
+        android:start="16dp"
+        android:scaleType="fitStart"
+        android:bottom="14dp"
+        android:left="15dp">
+        <shape
+            android:shape="oval">
+            <solid android:color="#404040" />
+        </shape>
+    </item>
+    <item
+        android:top="15dp"
+        android:right="10dp"
+        android:end="14dp"
+        android:bottom="15dp"
+        android:left="15dp"
+        android:width="20dp"
+        android:height="20dp"
+        android:id="@+id/layerimage"
+        android:gravity="center"
+        android:drawable="@drawable/ic_search_white_24dp" />
+
+</layer-list>

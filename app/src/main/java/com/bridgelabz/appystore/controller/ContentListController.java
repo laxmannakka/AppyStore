@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.bridgelabz.appystore.interfaces.ContentListAsynTask;
 import com.bridgelabz.appystore.interfaces.ContentListDataDownloadCompleted;
 import com.bridgelabz.appystore.model.ContentListmodel;
+import com.bridgelabz.appystore.utility.DialogBox;
 import com.bridgelabz.appystore.viewmodel.ContentListViewmodel;
 
 import org.json.JSONArray;
@@ -19,8 +20,7 @@ import java.util.ArrayList;
 
 public class ContentListController {
 
-    int moffset =0;
-
+CategoryController obj = new CategoryController();
 
     public void loadContentListFromServer(String url, final ContentListAsynTask asyntask){
 
@@ -68,26 +68,31 @@ public class ContentListController {
 
     }
 
-    public  void populateContentListViewModel(String pid, final String cid, int offset, final ContentListDataDownloadCompleted dataready){
+    public  void populateContentListViewModel(String pid, final String cid, int offset, final ContentListDataDownloadCompleted dataready) {
 
-        String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getContentList&" +
-                "content_type=videos&limit=5&offset="+offset+"&"+cid+"=176&pcatid="+pid+"&age=1.5&incl_age=5";
 
-        loadContentListFromServer(url, new ContentListAsynTask() {
-            @Override
-            public void loadedContentListDataFromServer(ArrayList<ContentListmodel> data) {
+            String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getContentList&" +
+                    "content_type=videos&limit=5&offset=" + offset + "&" + cid + "=176&pcatid=" + pid + "&age=1.5&incl_age=5";
 
-                ArrayList<ContentListViewmodel> contentviewmodellist =new ArrayList<ContentListViewmodel>();
-                for(int i=0;i<data.size();i++){
-                    ContentListmodel contentListmodel = data.get(i);
-                    String title = contentListmodel.getTitle();
-                    String url =contentListmodel.getImageUrl();
-                 //   Bitmap image = contentListmodel.getImage();
-                    String videourl = contentListmodel.getVideoUrl();
-                    contentviewmodellist.add(new ContentListViewmodel(title,url,videourl));
+            loadContentListFromServer(url, new ContentListAsynTask() {
+                @Override
+                public void loadedContentListDataFromServer(ArrayList<ContentListmodel> data) {
+
+                    ArrayList<ContentListViewmodel> contentviewmodellist = new ArrayList<ContentListViewmodel>();
+                    for (int i = 0; i < data.size(); i++) {
+                        ContentListmodel contentListmodel = data.get(i);
+                        String title = contentListmodel.getTitle();
+                        String url = contentListmodel.getImageUrl();
+                        //   Bitmap image = contentListmodel.getImage();
+                        String videourl = contentListmodel.getVideoUrl();
+                        contentviewmodellist.add(new ContentListViewmodel(title, url, videourl));
+                    }
+                    dataready.receivedContentListViewModelData(contentviewmodellist);
                 }
-                dataready.receivedContentListViewModelData(contentviewmodellist);
-            }
-        });
-    }
+            });
+        }
+
+
+
+
 }

@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="@drawable/layout_bg"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
         <TextView
             android:layout_marginTop="10dp"
             android:id="@+id/textview"
@@ -44,7 +45,6 @@
                 android:layout_marginTop="20dp"
                 android:id="@+id/loginbutton"
                 android:text="login"
-
                 android:layout_gravity="center"
                 android:background="@drawable/rounded_edittext"
                 android:layout_width="wrap_content"
@@ -58,7 +58,6 @@
             android:layout_height="wrap_content"
             android:textStyle="italic"
             android:textColor="#000000"/>
-
     </LinearLayout>
 
 </LinearLayout>

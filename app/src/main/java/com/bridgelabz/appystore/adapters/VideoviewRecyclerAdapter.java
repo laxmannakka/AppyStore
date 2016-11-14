@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bridgelabz.appystore.R;
+import com.bridgelabz.appystore.utility.RoundedCornersTransformation;
 import com.bridgelabz.appystore.viewmodel.ContentListViewmodel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -40,8 +41,13 @@ public class VideoviewRecyclerAdapter extends RecyclerView.Adapter<VideoviewRecy
     @Override
     public void onBindViewHolder(VideoviewRecyclerAdapter.MyViewHolder holder, int position) {
         ContentListViewmodel data = model.get(position);
-        Glide.with(context).load(data.getImageurl()).diskCacheStrategy( DiskCacheStrategy.SOURCE ).into(holder.video_images);
+        int sCorner = 25;
+        int sMargin = 4;
 
+        Glide.with(context)
+                .load(data.getImageurl())
+                .bitmapTransform(new RoundedCornersTransformation( context,sCorner, sMargin))
+                .into(holder.video_images);
     }
 
     @Override

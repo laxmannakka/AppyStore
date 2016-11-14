@@ -4,7 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <service
+        android:enabled="true"
+        android:name="com.bridgelabz.appystore.utility.Background" />
 
     <application
         android:allowBackup="true"
@@ -18,29 +23,16 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.CategoryActivity"
+            android:name=".view.MainActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".view.ContentListActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".view.VideoPlayerActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".view.SearchActivity"
-            android:screenOrientation="landscape" />
-        <activity android:name=".view.HistoryActivity"
-            android:screenOrientation="landscape"/>
 
-        <activity android:name=".view.SearchItemVideoPlayer"
-            android:screenOrientation="landscape"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"

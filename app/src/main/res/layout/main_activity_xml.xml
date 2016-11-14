@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_above="@+id/shop"
+            android:layout_below="@+id/relativelayout1"
+            android:layout_marginTop="10dp"></RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/shop"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/demolayerlist" />
+
+        <!--<ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/mhome"
+            android:layout_marginBottom="3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/homeicon" />
+    -->
+        <RelativeLayout
+            android:id="@+id/relativelayout1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="3dp">
+
+            <ImageView
+                android:id="@+id/categorysearch"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/demolayerlist"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/videos"
+                android:layout_alignRight="@+id/videos"
+                android:layout_below="@+id/videos"
+                android:text="videos"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/songs"
+                android:layout_alignRight="@+id/songs"
+                android:layout_alignTop="@+id/textView1"
+                android:text="songs"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/home"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/demolayerlist"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                 />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/history"
+                android:layout_alignRight="@+id/history"
+                android:layout_below="@+id/history"
+
+                android:text="history"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/songs"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="70dp"
+                android:layout_marginStart="70dp"
+                android:layout_toRightOf="@+id/home"
+              />
+
+            <ImageView
+                android:id="@+id/history"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="141dp"
+                android:layout_marginRight="141dp"
+                android:background="@drawable/demolayerlist"
+                android:layout_toLeftOf="@+id/categorysearch"
+                android:layout_toStartOf="@+id/categorysearch"
+               />
+
+            <ImageView
+                android:id="@+id/videos"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="86dp"
+                android:layout_marginRight="86dp"
+                android:background="@drawable/demolayerlist"
+                android:layout_toLeftOf="@+id/history"
+                android:layout_toStartOf="@+id/history"
+               />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/semiTransparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BF000000"
+        android:visibility="invisible" />
+
+</FrameLayout>

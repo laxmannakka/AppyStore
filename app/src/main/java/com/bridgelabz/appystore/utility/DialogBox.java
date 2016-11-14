@@ -1,5 +1,6 @@
 package com.bridgelabz.appystore.utility;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -10,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bridgelabz.appystore.R;
-import com.bridgelabz.appystore.view.CategoryActivity;
 
 /**
  * Created by bridgeit007 on 26/9/16.
@@ -32,7 +32,7 @@ public class DialogBox {
         // showing the dialogue
         dialog.show();
 
-        // Initilizing the image in Dialouge box
+        // Initilizing the homeicon in Dialouge box
         ImageView imageView = (ImageView) dialog.findViewById(R.id.profilePic);
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -42,5 +42,13 @@ public class DialogBox {
             }
         });
 
+    }
+
+    // it shows the alert diolouge when no internet
+    public static void showAlertDioalouge(Context context){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context,R.style.PauseDialog);
+        alertDialogBuilder.setMessage("Oops There is No Internet Connection");
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

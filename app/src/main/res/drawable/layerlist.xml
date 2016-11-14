@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/homeicon">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/homeicon" />
+    </item>
+    <item
+        android:id="@+id/songsicon"
+        android:left="10dp"
+        android:top="10dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/songicon" />
+    </item>
+    <item
+        android:id="@+id/videoicon"
+        android:left="20dp"
+        android:top="20dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/videoicon" />
+    </item>
+    <item
+        android:id="@+id/video"
+        android:left="20dp"
+        android:top="20dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/videoicon" />
+    </item>
+
+
+
+
+
+
+    <item
+        android:id="@+id/historyicon"
+        android:left="20dp"
+        android:top="20dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/history" />
+    </item>
+    <item
+        android:id="@+id/searchicon"
+        android:left="20dp"
+        android:top="20dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/search" />
+    </item>
+
+    <item
+        android:id="@+id/shopicon"
+        android:left="20dp"
+        android:top="20dp">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/buttonshop" />
+    </item>
+
+
+</layer-list>

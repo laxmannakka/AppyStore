@@ -5,8 +5,8 @@
     android:id="@+id/activity_video_player"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#363"
-    tools:context="com.bridgelabz.appystore.view.VideoPlayerActivity">
+    android:background="#000000"
+    tools:context="com.bridgelabz.appystore.view.VideoPlayerFragment">
 
     <RelativeLayout
         android:id="@+id/layout2"
@@ -25,6 +25,7 @@
         <VideoView
             android:id="@+id/videoview"
             android:layout_width="400dp"
+            android:layout_centerVertical="true"
             android:layout_height="match_parent"
             android:layout_marginStart="75dp"
             android:layout_alignParentTop="true" />
@@ -35,17 +36,18 @@
             android:layout_alignParentRight="true"
             android:layout_toEndOf="@+id/videoview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/videoview" />
 
 
     </RelativeLayout>
     <LinearLayout
         android:layout_marginTop="5dp"
-        android:background="#FFFF00"
+        android:background="#808080"
         android:layout_below="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_marginBottom="10dp"
-        android:layout_height="250dp">
+        android:layout_height="220dp">
         <android.support.v7.widget.RecyclerView
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
